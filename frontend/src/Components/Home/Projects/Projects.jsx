@@ -13,7 +13,7 @@ export default function Projects() {
         </div>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-3 lg:mx-10">
-          <Link to="" className="project_big_card">
+          <Link to="/project/1" className="project_big_card">
             <div className="relative h-[500px] w-full overflow-hidden rounded">
               <img src="/images/project3.jpg" alt="project" />
 

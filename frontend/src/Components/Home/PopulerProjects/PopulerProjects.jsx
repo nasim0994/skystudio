@@ -13,7 +13,7 @@ export default function PopulerProjects() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-3 lg:mx-20">
-          <Link to="" className="project_card">
+          <Link to="/project/1" className="project_card">
             <div className="relative h-52 w-full overflow-hidden rounded-lg">
               <img src="/images/project1.jpg" alt="project" />
 
