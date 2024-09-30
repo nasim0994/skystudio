@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { FaBath, FaBed } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 
 export default function ProjectDetails() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="py-10">
       <div className="container">

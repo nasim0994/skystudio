@@ -1,9 +1,9 @@
 import About from "../../../Components/Home/About/About";
-import Counter from "../../../Components/Home/Counter/Counter";
+import Features from "../../../Components/Home/Features/Features";
+import Gallery from "../../../Components/Home/Gallery/Gallery";
 import Hero from "../../../Components/Home/Hero/Hero";
-import Projects from "../../../Components/Home/Projects/Projects";
+import ProjectHighlight from "../../../Components/Home/ProjectHighlight/ProjectHighlight";
 import WhyChoose from "../../../Components/Home/WhyChoose/WhyChoose";
-import PopulerProjects from "../../../Components/Home/PopulerProjects/PopulerProjects";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -14,11 +14,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Projects />
-      <WhyChoose />
       <About />
-      <Counter />
-      <PopulerProjects />
+      <WhyChoose />
+      <ProjectHighlight />
+      <Gallery />
+      <Features />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <section className="py-20">
+    <section className="mt-[95vh] py-20">
       <div className="container">
         <div className="grid items-center gap-4 sm:grid-cols-2">
           <div>
@@ -16,10 +16,11 @@ export default function About() {
           <div>
             <p className="text-sm text-primary">who we are</p>
 
-            <h2 className="mt-4 text-3xl font-medium">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa,
-              laborum!
+            <h2 className="mt-4 text-8xl font-medium uppercase text-neutral">
+              Square
             </h2>
+
+            <h2 className="mt-1 text-3xl">adipisicing elit. Culpa, laborum!</h2>
 
             <div className="mt-4 text-[15px] text-neutral-content">
               <p>

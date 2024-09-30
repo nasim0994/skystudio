@@ -5,18 +5,6 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [active, setActive] = useState(false);
-
-  // when scroll down, add shadow to header
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        setActive(true);
-      } else {
-        setActive(false);
-      }
-    });
-  }, []);
 
   // close sidebar when click outside
   useEffect(() => {
@@ -34,9 +22,7 @@ export default function Header() {
   }, [showSidebar]);
 
   return (
-    <header
-      className={`sticky top-0 z-40 pt-2 ${active && "bg-base-100"} duration-300`}
-    >
+    <header className="relative z-40 pt-2">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold">

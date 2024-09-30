@@ -1,9 +1,42 @@
-import { Outlet } from "react-router-dom";
+import "../assets/css/admin.css";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import AdminSidebar from "../Components/AdminComponents/AdminSidebar/AdminSidebar";
+import AdminHeader from "../Components/AdminComponents/AdminHeader/AdminHeader";
 
 export default function AdminLayout() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (pathname == "/admin") {
+      navigate("/admin/dashboard");
+    }
+  }, [pathname, navigate]);
+
+  const [sidebar, setSidebar] = useState(false);
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      if (
+        (!e.target.closest(".admin_sidebar") &&
+          !e.target.closest(".admin_sidebar_btn")) ||
+        e.target.closest(".admin_siderbar ul li a")
+      ) {
+        setSidebar(false);
+      }
+    });
+  }, []);
+
   return (
-    <div>
-      <Outlet />
-    </div>
+    <section className="flex">
+      <aside className={`admin_sidebar ${sidebar && "admin_sidebar_show"}`}>
+        <AdminSidebar />
+      </aside>
+      <div className="admin_content">
+        <AdminHeader setSidebar={setSidebar} />
+        <main className="py-3 sm:p-3">
+          <Outlet />
+        </main>
+      </div>
+    </section>
   );
 }
