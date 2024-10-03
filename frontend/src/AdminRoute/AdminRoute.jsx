@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Spinner from "../components/Spinner/Spinner";
+import Spinner from "../Components/Spinner/Spinner";
 
 export default function AdminRoute({ children }) {
   const { loggedUser } = useSelector((state) => state.user);
