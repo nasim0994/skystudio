@@ -1,6 +1,6 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteContactMsgMutation,
   useGetAllContactMsgsQuery,

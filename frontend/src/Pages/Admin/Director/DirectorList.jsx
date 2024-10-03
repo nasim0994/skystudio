@@ -1,7 +1,7 @@
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteDirectorMutation,
   useGetDirectorQuery,
