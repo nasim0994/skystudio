@@ -1,6 +1,6 @@
+const { createJsonWebToken } = require("../middleware/jsonWebToken");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const { createJsonWebToken } = require("../utils/jsonwebtoken");
 
 // Add an Admin User
 exports.addAdmin = async (req, res) => {
