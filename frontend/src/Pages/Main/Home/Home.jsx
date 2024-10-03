@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About />
+      <div className="mt-[95vh]">
+        <About />
+      </div>
       <WhyChoose />
       <ProjectHighlight />
       <Gallery />

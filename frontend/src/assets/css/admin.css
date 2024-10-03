@@ -61,11 +61,14 @@
   max-height: 0px;
   overflow: hidden;
   transition: all 0.3s ease;
+  width: 100%;
+  display: none;
 }
 
 .admin_siderbar .dropdown_show {
   max-height: 300px;
   transition: all 0.3s ease;
+  display: block;
 }
 
 .admin_siderbar .dropdown ul li a,
@@ -81,11 +84,12 @@
   max-height: 0px;
   overflow: hidden;
   transition: all 0.3s ease;
+
 }
 
 .admin_siderbar .subDropdown_show {
-  max-height: 300px;
   transition: all 0.3s ease;
+
 }
 
 @media only screen and (max-width: 1024px) {

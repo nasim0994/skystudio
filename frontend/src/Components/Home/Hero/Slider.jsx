@@ -1,6 +1,10 @@
 import { IoArrowDownCircleOutline } from "react-icons/io5";
+// import { useGetBannerQuery } from "../../../Redux/banner/bannerApi";
 
 export default function Slider() {
+  
+  // const { data } = useGetBannerQuery();
+
   return (
     <div className="hero_slider absolute left-0 top-0 z-30 h-[75vh] w-full sm:h-screen">
       <div>

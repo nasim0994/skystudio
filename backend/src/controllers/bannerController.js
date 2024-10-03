@@ -2,20 +2,20 @@ const Banner = require("../models/bannerModel");
 const fs = require("fs");
 
 exports.addBanner = async (req, res) => {
-  const image = req?.file?.filename;
+  const video = req?.file?.filename;
   const data = req?.body;
 
   try {
-    if (!image) {
+    if (!video) {
       return res.status(400).json({
         success: false,
-        message: "Image is required",
+        message: "Video is required",
       });
     }
 
     const isExist = await Banner.findOne({});
     if (isExist) {
-      fs.unlink(`./uploads/banner/${image}`, (err) => {
+      fs.unlink(`./uploads/banner/${video}`, (err) => {
         if (err) {
           console.log(err);
         }
@@ -29,7 +29,7 @@ exports.addBanner = async (req, res) => {
 
     const info = {
       ...data,
-      image: `/banner/${image}`,
+      video: `banner/${video}`,
     };
     const result = await Banner.create(info);
 
@@ -39,7 +39,7 @@ exports.addBanner = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    fs.unlink(`./uploads/banner/${image}`, (err) => {
+    fs.unlink(`./uploads/banner/${video}`, (err) => {
       if (err) {
         console.log(err);
       }
@@ -71,7 +71,7 @@ exports.getBanner = async (req, res) => {
 
 exports.updateBanner = async (req, res) => {
   const id = req?.params?.id;
-  const image = req?.file?.filename;
+  const video = req?.file?.filename;
   const data = req?.body;
 
   try {
@@ -86,21 +86,21 @@ exports.updateBanner = async (req, res) => {
 
     let newData;
 
-    if (image && isExist?.image) {
-      fs.unlink(`./uploads/${isExist?.image}`, (err) => {
+    if (video && isExist?.video) {
+      fs.unlink(`./uploads/banner/${isExist?.video}`, (err) => {
         if (err) {
           console.log(err);
         }
       });
     }
 
-    if (image) {
+    if (video) {
       newData = {
         ...data,
-        image: `/banner/${image}`,
+        video: `banner/${video}`,
       };
     } else {
-      newData = { ...data, image: isExist?.image };
+      newData = { ...data, video: isExist?.video };
     }
 
     const result = await Banner.findByIdAndUpdate(id, newData, {
@@ -113,7 +113,7 @@ exports.updateBanner = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    fs.unlink(`./uploads/banner/${image}`, (err) => {
+    fs.unlink(`./uploads/banner/${video}`, (err) => {
       if (err) {
         console.log(err);
       }

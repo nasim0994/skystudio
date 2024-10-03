@@ -5,32 +5,36 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useGetContactsQuery } from "../../Redux/contact/contactApi";
 
 export default function Footer() {
+  const { data } = useGetContactsQuery();
+  const contact = data?.data;
+
   return (
     <footer className="bg-slate-100 pt-16">
       <div className="container">
         <div className="flex items-center justify-center gap-4">
           <Link
-            to="#"
+            to={contact?.facebookLink}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
           >
             <FaFacebookF />
           </Link>
           <Link
-            to="#"
+            to={contact?.linkedinLink}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
           >
             <FaLinkedinIn />
           </Link>
           <Link
-            to="#"
+            to={contact?.twitterLink}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
           >
             <FaInstagram />
           </Link>
           <Link
-            to="#"
+            to={contact?.youtubeLink}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
           >
             <FaYoutube />
@@ -38,11 +42,13 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 text-center text-neutral">
-          <h2 className="text-[80px] font-medium sm:text-[100px]">16500</h2>
+          <h2 className="text-[80px] font-medium sm:text-[100px]">
+            {contact?.hotNumber}
+          </h2>
           <div className="-mt-5 text-[15px] sm:-mt-7">
-            <p>Brooklyn, New York, United States</p>
-            <p>example@example.com</p>
-            <p>+0123-456789</p>
+            <p>{contact?.address}</p>
+            <p>{contact?.email}</p>
+            <p>{contact?.phone}</p>
           </div>
         </div>
 
@@ -62,7 +68,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-neutral-content py-4">
-          <div className="flex items-center justify-between text-xs text-neutral-content">
+          <div className="flex items-center justify-between text-[8px] md:text-xs text-neutral-content">
             <p>
               All Rights Reserved @Gloria Homes LTD. Develop by{" "}
               <Link

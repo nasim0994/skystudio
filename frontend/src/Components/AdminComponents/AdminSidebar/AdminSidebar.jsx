@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import {
   MdMonitor,
   MdOutlineDashboard,
-  MdOutlineCategory,
   MdContactPhone,
+  MdHighlight,
+  MdFeaturedPlayList,
+  MdOutlinePrivacyTip,
 } from "react-icons/md";
-import { BsCart4 } from "react-icons/bs";
 import { FcAbout } from "react-icons/fc";
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill, RiBarChartHorizontalFill } from "react-icons/ri";
 import { FaChartLine } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
-import { GrServices } from "react-icons/gr";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
+import { CiMail } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
 
 import SidebarItems from "./SidebarItems";
+import { useGetLogosQuery } from "../../../Redux/logo/logoApi";
 
 const adminSidebarItems = [
   {
@@ -23,46 +27,46 @@ const adminSidebarItems = [
   },
 
   {
-    icon: <MdOutlineCategory />,
-    title: "Category",
-    subMenu: [
-      {
-        title: "Categories",
-        path: "/admin/category/categories",
-      },
-      {
-        title: "Sub Categories",
-        path: "/admin/category/sub-categories",
-      },
-      {
-        title: "Sub Sub Categories",
-        path: "/admin/category/sub-sub-categories",
-      },
-    ],
+    icon: <HiOutlineBuildingLibrary />,
+    title: "Projects",
+    path: "/admin/project/all",
   },
 
   {
-    icon: <BsCart4 />,
-    title: "Products",
-    path: "/admin/product/all",
+    icon: <MdHighlight />,
+    title: "Highlight Project",
+    path: "/admin/highlightProject",
   },
-
-  {
-    icon: <GrServices />,
-    title: "Services",
-    path: "/admin/service/all",
-  },
-
-  // {
-  //   icon: <FaBorderAll />,
-  //   title: "Orders",
-  //   path: "/admin/orders",
-  // },
 
   {
     icon: <RiAdminFill />,
     title: "Administrator",
     path: "/admin/administrator/all",
+  },
+  {
+    icon: <MdFeaturedPlayList />,
+    title: "Features Projects",
+    path: "/admin/featuresProject/all",
+  },
+  {
+    icon: <CgProfile />,
+    title: "Directors",
+    path: "/admin/director/all",
+  },
+
+  {
+    icon: <RiBarChartHorizontalFill />,
+    title: "Why Choose Us",
+    subMenu: [
+      {
+        title: "Why Choose Us Section",
+        path: "/admin/whyChoose/section",
+      },
+      {
+        title: "Why Choose Us Cards",
+        path: "/admin/whyChoose/cards/all",
+      },
+    ],
   },
 
   {
@@ -75,6 +79,11 @@ const adminSidebarItems = [
     icon: <MdContactPhone />,
     title: "Contact Us",
     path: "/admin/contact-us",
+  },
+  {
+    icon: <CiMail />,
+    title: "Client Message",
+    path: "/admin/contact-msg",
   },
 
   {
@@ -92,6 +101,10 @@ const adminSidebarItems = [
       {
         title: "Banner",
         path: "/admin/front-end/banner",
+      },
+      {
+        title: "Gallery",
+        path: "/admin/front-end/gallery",
       },
     ],
   },
@@ -112,20 +125,28 @@ const adminSidebarItems = [
     title: "SEO Setting",
     path: "/admin/seo",
   },
+  {
+    icon: <MdOutlinePrivacyTip />,
+    title: "Privacy Policy",
+    path: "/admin/privacy-policy",
+  },
 ];
 
 export default function AdminSidebar() {
+  const { data } = useGetLogosQuery();
+  const logo = data?.data;
+
   return (
-    <div className="h-full flex flex-col justify-between">
+    <div className="flex h-full flex-col justify-between">
       <div>
         <nav className="admin_siderbar">
-          <Link to="/admin/dashboard" className="py-3 block">
-            <img className="w-3/5 mx-auto" src="/images/logo.png" alt="Logo" />
+          <Link to="/admin/dashboard" className="block py-3">
+            <img className="mx-auto w-3/5"  src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`} alt="Logo" />
           </Link>
 
           <ul>
             {adminSidebarItems?.map((item, i) => (
-              <SidebarItems key={i} item={item} />
+              <SidebarItems item={item} key={i} />
             ))}
           </ul>
         </nav>

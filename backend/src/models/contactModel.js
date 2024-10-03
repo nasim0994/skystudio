@@ -10,11 +10,11 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    address: {
+    hotNumber: {
       type: String,
       required: true,
     },
-    liveLink: {
+    address: {
       type: String,
       required: true,
     },

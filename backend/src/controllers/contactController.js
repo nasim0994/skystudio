@@ -26,29 +26,32 @@ exports.addContact = async (req, res) => {
 };
 
 exports.updateContact = async (req, res) => {
-  const id = req?.params?.id;
   const data = req?.body;
+  const contactId = req.params.id;
 
   try {
-    const contact = await Contact.findById(id);
+    const contact = await Contact.findById(contactId);
 
     if (!contact) {
       return res.status(400).json({
         success: false,
-        message: "contact not found",
+        message: "Contact not found",
       });
     }
-
-    await Contact.findByIdAndUpdate(id, data, { new: true });
+    const updatedContact = await Contact.findByIdAndUpdate(contactId, data, {
+      new: true,
+    });
 
     res.status(200).json({
       success: true,
-      message: "update success",
+      message: "Contact updated successfully",
+      data: updatedContact,
     });
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Server error",
+      error: error.message,
     });
   }
 };

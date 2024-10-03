@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { TbWorldWww } from "react-icons/tb";
 import { FaUserCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../../Redux/user/userSlice";
 
 export default function AdminHeader({ setSidebar }) {
   const [dropdown, setDropdown] = useState(false);
@@ -13,6 +15,8 @@ export default function AdminHeader({ setSidebar }) {
       }
     });
   }, []);
+
+  const dispatch = useDispatch();
 
   return (
     <header className="bg-base-100 px-6 py-3 text-neutral shadow">
@@ -40,7 +44,7 @@ export default function AdminHeader({ setSidebar }) {
             <FaUserCircle className="text-2xl" />
           </button>
 
-          {/* {dropdown && (
+          {dropdown && (
             <div className="absolute top-[140%] right-0 w-40 bg-base-100 rounded shadow p-2">
               <button
                 onClick={() => dispatch(userLogout())}
@@ -49,7 +53,7 @@ export default function AdminHeader({ setSidebar }) {
                 Logout
               </button>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </header>
