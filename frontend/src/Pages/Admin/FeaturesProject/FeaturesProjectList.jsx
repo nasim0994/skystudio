@@ -1,11 +1,11 @@
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteFeatureProjectMutation,
   useGetFeatureProjectsQuery,
 } from "../../../Redux/featureProject/featureProjectApi";
+import Spinner from "../../../Components/Spinner/Spinner";
 
 export default function FeaturesProjectList() {
   const { data, isLoading, isError, isSuccess } = useGetFeatureProjectsQuery();
