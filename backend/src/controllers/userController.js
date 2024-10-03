@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
 const { createJsonWebToken } = require("../utils/jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 exports.addAdmin = async (req, res) => {
   try {
