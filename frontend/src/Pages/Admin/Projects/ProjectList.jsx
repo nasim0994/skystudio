@@ -1,7 +1,6 @@
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteProjectMutation,
   useGetProjectsQuery,
@@ -35,7 +34,6 @@ export default function ProjectList() {
   };
 
   let content = null;
-  if (isLoading) return (content = <Spinner />);
 
   if (isError) {
     content = (
