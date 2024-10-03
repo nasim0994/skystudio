@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGetContactMsgByIdQuery } from "../../../Redux/contactMsg/contactMsgApi";
-import Spinner from "../../../components/Spinner/Spinner";
+import Spinner from "../../../Components/Spinner/Spinner";
 
 export default function ContactMsgDetail() {
   const { id } = useParams();
