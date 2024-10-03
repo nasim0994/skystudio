@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
-const { createJsonWebToken } = require("../utils/jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { createJsonWebToken } = require("../utils/jsonwebtoken");
 
 // Add an Admin User
 exports.addAdmin = async (req, res) => {
@@ -97,7 +97,6 @@ exports.loginUser = async (req, res) => {
       });
     }
 
-    // Generate token (without sensitive information like password)
     const accessToken = createJsonWebToken({ username: user.username, role: user.role }, "6h");
 
     res.status(200).json({
