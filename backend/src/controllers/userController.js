@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-// const { createJsonWebToken } = require("../utils/jsonwebtoken");
+const { createJsonWebToken } = require("../utils/jsonwebtoken");
 
 // Add an Admin User
 exports.addAdmin = async (req, res) => {
@@ -74,43 +74,47 @@ exports.deleteAdmin = async (req, res) => {
 
 // Login User
 exports.loginUser = async (req, res) => {
-  // try {
-  //   const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  //   // Find user by username
-  //   const user = await User.findOne({ username });
+    // Find user by username
+    const user = await User.findOne({ username });
 
-  //   if (!user) {
-  //     return res.status(401).json({
-  //       success: false,
-  //       error: "User not found",
-  //     });
-  //   }
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        error: "User not found",
+      });
+    }
 
-  //   // Match password
-  //   const isMatch = await bcrypt.compare(password, user.password);
+    // Match password
+    const isMatch = await bcrypt.compare(password, user.password);
 
-  //   if (!isMatch) {
-  //     return res.status(401).json({
-  //       success: false,
-  //       error: "Email or password is incorrect",
-  //     });
-  //   }
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        error: "Email or password is incorrect",
+      });
+    }
 
-  //   const accessToken = createJsonWebToken({ username: user.username, role: user.role }, "6h");
+    // Create JWT
+    const accessToken = createJsonWebToken(
+      { id: user._id, username: user.username, role: user.role },
+      "6h"
+    );
 
-  //   res.status(200).json({
-  //     success: true,
-  //     message: "Login successful",
-  //     token: accessToken,
-  //     data: user,
-  //   });
-  // } catch (error) {
-  //   res.status(500).json({
-  //     success: false,
-  //     error: error.message,
-  //   });
-  // }
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token: accessToken,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
 };
 
 // Get Logged-in User Information
