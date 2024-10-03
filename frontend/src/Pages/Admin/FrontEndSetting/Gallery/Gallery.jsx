@@ -2,8 +2,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import Spinner from "../../../../components/Spinner/Spinner";
 import { useDeleteGalleryByIdMutation, useGetGalleryQuery } from "../../../../Redux/gallery/galleryApi";
+import Spinner from "../../../../Components/Spinner/Spinner";
 
 export default function Gallery() {
   const { data, isLoading, isError, isSuccess } = useGetGalleryQuery();

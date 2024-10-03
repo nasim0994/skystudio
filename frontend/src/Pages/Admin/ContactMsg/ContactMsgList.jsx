@@ -1,12 +1,12 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteContactMsgMutation,
   useGetAllContactMsgsQuery,
 } from "../../../Redux/contactMsg/contactMsgApi";
 import { IoEye } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import Spinner from "../../../Components/Spinner/Spinner";
 
 export default function ContactMsgList() {
   const { data, isLoading, isError, isSuccess } = useGetAllContactMsgsQuery();

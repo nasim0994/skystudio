@@ -1,11 +1,11 @@
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Spinner from "../../../components/Spinner/Spinner";
 import {
   useDeleteDirectorMutation,
   useGetDirectorQuery,
 } from "../../../Redux/director/directorApi";
+import Spinner from "../../../Components/Spinner/Spinner";
 
 export default function DirectorList() {
   const { data, isLoading, isError, isSuccess } = useGetDirectorQuery();

@@ -7,7 +7,7 @@ import {
 } from "../../../Redux/projects/projectsApi";
 
 export default function ProjectList() {
-  const { data, isLoading, isError, isSuccess } = useGetProjectsQuery();
+  const { data, isError, isSuccess } = useGetProjectsQuery();
   const projects = data?.data;
 
   const [deleteProject] = useDeleteProjectMutation();
