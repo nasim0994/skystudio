@@ -1,6 +1,6 @@
 import { FaUserShield } from "react-icons/fa";
 import { useGetAdminsQuery } from "../../../Redux/user/userApi";
-import Spinner from "../../../components/Spinner/Spinner";
+import Spinner from "../../../Components/Spinner/Spinner";
 import { MdFeaturedPlayList } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
 import { IoMail } from "react-icons/io5";
