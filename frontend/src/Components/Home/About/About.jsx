@@ -11,7 +11,7 @@ export default function About() {
   return (
     <section className="py-10 md:py-20">
       <div className="container">
-        <div className="grid items-center gap-8 md:gap-4 sm:grid-cols-2">
+        <div className="grid items-center gap-8 sm:grid-cols-2 md:gap-4">
           <div>
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${about?.image}`}
@@ -23,19 +23,23 @@ export default function About() {
           <div className="">
             <p className="text-sm text-primary">{about?.heading}</p>
 
-            <h2 className="mt-4 text-7xl md:text-8xl font-medium uppercase text-neutral">
+            <h2 className="mt-4 text-7xl font-medium uppercase text-neutral md:text-8xl">
               {about?.title}
             </h2>
 
             <h2 className="mt-1 text-3xl"> {about?.subTitle} </h2>
 
-            <div className="mt-4 text-[10px] md:text-[15px] text-neutral-content">
-              <p>{description}</p>
+            <div className="mt-4 text-[10px] text-neutral-content md:text-[15px]">
+              {description}
             </div>
 
-            <div className="mt-6">
-              <Link to="/about-us" className="primary_btn">
-                Read More
+            <div className="mt-6 flex gap-3">
+              <Link
+                to={`${import.meta.env.VITE_BACKEND_URL}/${about?.profileDoc}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="primary_btn">Gloria Homes Profile</button>
               </Link>
             </div>
           </div>

@@ -11,7 +11,7 @@ export default function ProjectHighlight() {
   return (
     <section className="py-10">
       <div className="container">
-        <div className="grid md:grid-cols-2 items-center gap-4 md:gap-10">
+        <div className="grid items-center gap-4 md:grid-cols-2 md:gap-10">
           <div>
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${highlightProject?.image}`}
@@ -20,13 +20,13 @@ export default function ProjectHighlight() {
           </div>
 
           <div>
-            <h2 className="text-4xl md:text-6xl font-medium uppercase text-neutral">
+            <h2 className="text-4xl font-medium uppercase text-neutral md:text-6xl">
               {highlightProject?.title}
             </h2>
 
-            <p className="mt-1.5 md:mt-3 text-[8px] md:text-[15px] text-neutral-content">
+            <div className="mt-1.5 text-[8px] text-neutral-content md:mt-3 md:text-[15px]">
               {description}
-            </p>
+            </div>
           </div>
         </div>
       </div>

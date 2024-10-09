@@ -39,15 +39,15 @@ export default function Features() {
                   <h2 className="text-xl font-medium uppercase text-neutral md:text-4xl">
                     {project?.title}
                   </h2>
-                  <p className="mt-2 text-[8px] text-neutral-content md:text-base">
+                  <div className="mt-2 text-[8px] text-neutral-content md:text-base">
                     {parser(project?.description)}
-                  </p>
+                  </div>
                 </div>
                 <div>
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/${project?.image}`}
                     alt="Community Shop"
-                    className="mx-auto w-full rounded md:w-[80%] "
+                    className="mx-auto w-full rounded md:w-[80%]"
                   />
                 </div>
               </div>

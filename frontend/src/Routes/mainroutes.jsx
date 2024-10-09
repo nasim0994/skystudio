@@ -1,13 +1,20 @@
+import { lazy, Suspense } from "react";
 import MainLayout from "../Layout/MainLayout";
-import Aboutus from "../Pages/Main/Aboutus/Aboutus";
-import Contactus from "../Pages/Main/Contactus/Contactus";
+import Spinner from "../Components/Spinner/Spinner";
 import Home from "../Pages/Main/Home/Home";
-import PrivacyPolicy from "../Pages/Main/PrivacyPolicy/PrivacyPolicy";
-import ProjectDetails from "../Pages/Main/ProjectDetails/ProjectDetails";
-import Projects from "../Pages/Main/Projects/Projects";
+
+// Lazy loading the components
+const Aboutus = lazy(() => import("../Pages/Main/Aboutus/Aboutus"));
+const Contactus = lazy(() => import("../Pages/Main/Contactus/Contactus"));
+const PrivacyPolicy = lazy(
+  () => import("../Pages/Main/PrivacyPolicy/PrivacyPolicy"),
+);
+const ProjectDetails = lazy(
+  () => import("../Pages/Main/ProjectDetails/ProjectDetails"),
+);
+const Projects = lazy(() => import("../Pages/Main/Projects/Projects"));
 
 export const mainRoutes = {
-  id: "main",
   path: "/",
   element: <MainLayout />,
   children: [
@@ -17,23 +24,43 @@ export const mainRoutes = {
     },
     {
       path: "/projects",
-      element: <Projects />,
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <Projects />
+        </Suspense>
+      ),
     },
     {
       path: "/project/:id",
-      element: <ProjectDetails />,
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <ProjectDetails />
+        </Suspense>
+      ),
     },
     {
       path: "/about-us",
-      element: <Aboutus />,
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <Aboutus />
+        </Suspense>
+      ),
     },
     {
       path: "/contact-us",
-      element: <Contactus />,
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <Contactus />
+        </Suspense>
+      ),
     },
     {
       path: "/privacy-policy",
-      element: <PrivacyPolicy />,
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <PrivacyPolicy />
+        </Suspense>
+      ),
     },
   ],
 };

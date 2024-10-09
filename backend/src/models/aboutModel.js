@@ -21,6 +21,9 @@ const AboutSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profileDoc: {
+    type: String,
+  },
 });
 
 const AboutUs = mongoose.model("AboutUs", AboutSchema);

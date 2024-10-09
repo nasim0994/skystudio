@@ -1,40 +1,80 @@
+import { lazy, Suspense } from "react";
 import AdminLayout from "../Layout/AdminLayout";
-import About from "../Pages/Admin/AboutUs/AboutUs";
-import AddAdministrator from "../Pages/Admin/Administrator/AddAdministrator";
-import Administrator from "../Pages/Admin/Administrator/Administrator";
-import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
-import Banner from "../Pages/Admin/FrontEndSetting/Banner/Banner";
-import AddProject from "../Pages/Admin/Projects/AddProject";
-import EditProject from "../Pages/Admin/Projects/EditProject";
-import ProjectList from "../Pages/Admin/Projects/ProjectList";
-import ContactUs from "../Pages/Admin/ContactUs/ContactUs";
-import HighlightProject from "../Pages/Admin/HighlightProject/HighlightProject";
-import Favicon from "../Pages/Admin/FrontEndSetting/Favicon/Favicon";
-import Logo from "../Pages/Admin/FrontEndSetting/Logo/Logo";
-import Gallery from "../Pages/Admin/FrontEndSetting/Gallery/Gallery";
-import BusinessInfo from "../Pages/Admin/GeneralSetting/BusinessInfo/BusinessInfo";
-import SEO from "../Pages/Admin/SEO/SEO";
-import FeaturesProjectList from "../Pages/Admin/FeaturesProject/FeaturesProjectList";
-import AddFeaturesProject from "../Pages/Admin/FeaturesProject/AddFeaturesProject";
-import EditFeaturesProject from "../Pages/Admin/FeaturesProject/EditFeaturesProject";
-import PrivacyPolicy from "../Pages/Admin/PrivacyPolicy/PrivacyPolicy";
-import WhyChooseSection from "../Pages/Admin/WhyChoose/WhyChooseSection";
-import WhyChooseCards from "../Pages/Admin/WhyChoose/WhyChooseCards";
-import AddWhyChooseCard from "../Pages/Admin/WhyChoose/AddWhyChooseCard";
-import AddGallery from "../Pages/Admin/FrontEndSetting/Gallery/AddGallery";
-import DirectorList from "../Pages/Admin/Director/DirectorList";
-import AddDirector from "../Pages/Admin/Director/AddDirector";
-import EditDirector from "../Pages/Admin/Director/EditDirector";
-import ContactMsgList from "../Pages/Admin/ContactMsg/ContactMsgList";
-import ContactMsgDetail from "../Pages/Admin/ContactMsg/ContactMsgDetail";
-import AdminRoute from "../AdminRoute/AdminRoute";
+import Spinner from "../Components/Spinner/Spinner";
+
+// Lazy loading the components
+const About = lazy(() => import("../Pages/Admin/AboutUs/AboutUs"));
+const AddAdministrator = lazy(
+  () => import("../Pages/Admin/Administrator/AddAdministrator"),
+);
+const Administrator = lazy(
+  () => import("../Pages/Admin/Administrator/Administrator"),
+);
+const Dashboard = lazy(() => import("../Pages/Admin/Dashboard/Dashboard"));
+const Banner = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Banner/Banner"),
+);
+const AddProject = lazy(() => import("../Pages/Admin/Projects/AddProject"));
+const EditProject = lazy(() => import("../Pages/Admin/Projects/EditProject"));
+const ProjectList = lazy(() => import("../Pages/Admin/Projects/ProjectList"));
+const ContactUs = lazy(() => import("../Pages/Admin/ContactUs/ContactUs"));
+const HighlightProject = lazy(
+  () => import("../Pages/Admin/HighlightProject/HighlightProject"),
+);
+const Favicon = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Favicon/Favicon"),
+);
+const Logo = lazy(() => import("../Pages/Admin/FrontEndSetting/Logo/Logo"));
+const Gallery = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Gallery/Gallery"),
+);
+const BusinessInfo = lazy(
+  () => import("../Pages/Admin/GeneralSetting/BusinessInfo/BusinessInfo"),
+);
+const SEO = lazy(() => import("../Pages/Admin/SEO/SEO"));
+const FeaturesProjectList = lazy(
+  () => import("../Pages/Admin/FeaturesProject/FeaturesProjectList"),
+);
+const AddFeaturesProject = lazy(
+  () => import("../Pages/Admin/FeaturesProject/AddFeaturesProject"),
+);
+const EditFeaturesProject = lazy(
+  () => import("../Pages/Admin/FeaturesProject/EditFeaturesProject"),
+);
+const PrivacyPolicy = lazy(
+  () => import("../Pages/Admin/PrivacyPolicy/PrivacyPolicy"),
+);
+const WhyChooseSection = lazy(
+  () => import("../Pages/Admin/WhyChoose/WhyChooseSection"),
+);
+const WhyChooseCards = lazy(
+  () => import("../Pages/Admin/WhyChoose/WhyChooseCards"),
+);
+const AddWhyChooseCard = lazy(
+  () => import("../Pages/Admin/WhyChoose/AddWhyChooseCard"),
+);
+const AddGallery = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Gallery/AddGallery"),
+);
+const DirectorList = lazy(() => import("../Pages/Admin/Director/DirectorList"));
+const AddDirector = lazy(() => import("../Pages/Admin/Director/AddDirector"));
+const EditDirector = lazy(() => import("../Pages/Admin/Director/EditDirector"));
+const ContactMsgList = lazy(
+  () => import("../Pages/Admin/ContactMsg/ContactMsgList"),
+);
+const ContactMsgDetail = lazy(
+  () => import("../Pages/Admin/ContactMsg/ContactMsgDetail"),
+);
+const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
 
 export const adminRoutes = {
   path: "/admin",
   element: (
-    <AdminRoute>
-      <AdminLayout />
-    </AdminRoute>
+    <Suspense fallback={<Spinner />}>
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    </Suspense>
   ),
   children: [
     {

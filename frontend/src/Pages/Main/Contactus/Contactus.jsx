@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 export default function Contactus() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Contact Us - GHL";
   }, []);
 
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ export default function Contactus() {
       <div className="container">
         <div className="grid gap-8 md:grid-cols-2 md:gap-14">
           <div>
-            <h2 className="text-2xl text-center md:text-start font-semibold text-neutral md:text-3xl">
+            <h2 className="text-center text-2xl font-semibold text-neutral md:text-start md:text-3xl">
               Contact Us
             </h2>
             <p className="mt-1 text-[15px] text-neutral-content">
@@ -56,7 +57,7 @@ export default function Contactus() {
               veniam.
             </p>
 
-            <div className="mt-3 md:mt-6 flex flex-col gap-1 md:gap-2.5 text-neutral-content">
+            <div className="mt-3 flex flex-col gap-1 text-neutral-content md:mt-6 md:gap-2.5">
               <div className="flex items-center gap-1">
                 <p>
                   <FaPhone />
@@ -91,7 +92,7 @@ export default function Contactus() {
           </div>
 
           <div>
-            <h2 className="mb-3 text-xl text-center md:text-start font-semibold text-primary">
+            <h2 className="mb-3 text-center text-xl font-semibold text-primary md:text-start">
               Get In Touch
             </h2>
             <form className="flex flex-col gap-3">
@@ -137,10 +138,7 @@ export default function Contactus() {
               </div>
 
               <div>
-                <button
-                  onClick={handleSubmit}
-                  className="primary_btn"
-                >
+                <button onClick={handleSubmit} className="primary_btn">
                   {isLoading ? "Sending..." : "Send Message"}
                 </button>
               </div>

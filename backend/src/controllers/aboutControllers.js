@@ -3,11 +3,13 @@ const AboutUs = require("../models/aboutModel");
 
 exports.createAboutUs = async (req, res) => {
   const image = req?.file?.filename;
+  const profileDoc = req?.files?.profileDoc[0]?.filename;
   const data = req?.body;
 
   const aboutUs = {
     ...data,
     image: `/aboutus/${image}`,
+    profileDoc: `/aboutus/${profileDoc}`,
   };
 
   try {
@@ -38,6 +40,13 @@ exports.createAboutUs = async (req, res) => {
         console.log(err);
       }
     });
+
+    fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+
     res.status(500).json({
       success: false,
       message: err.message,
@@ -65,17 +74,13 @@ exports.getAboutUs = async (req, res) => {
 exports.updateAboutUs = async (req, res) => {
   const id = req?.params?.id;
   const image = req?.file?.filename;
+  const profileDoc = req?.files?.profileDoc?.[0]?.filename;
   const data = req?.body;
 
   try {
     const isExist = await AboutUs.findById(id);
 
     if (!isExist) {
-      fs.unlink(`./uploads/aboutus/${image}`, (err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
       return res.status(404).json({
         success: false,
         message: "About Us not found",
@@ -84,10 +89,31 @@ exports.updateAboutUs = async (req, res) => {
 
     let newData;
 
-    if (image) {
-      fs.unlink(`./uploads/${isExist?.image}`, (err) => {
+    if (image && profileDoc) {
+      fs.unlink(`./uploads/${isExist.image}`, (err) => {
         if (err) {
-          console.log(err);
+          console.error(err);
+          return;
+        }
+      });
+
+      fs.unlink(`./uploads/${isExist.profileDoc}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+
+      newData = {
+        ...data,
+        image: `/aboutus/${image}`,
+        profileDoc: `/aboutus/${profileDoc}`,
+      };
+    } else if (image) {
+      fs.unlink(`./uploads/${isExist.image}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
         }
       });
 
@@ -95,8 +121,22 @@ exports.updateAboutUs = async (req, res) => {
         ...data,
         image: `/aboutus/${image}`,
       };
+    } else if (profileDoc) {
+      fs.unlink(`./uploads/${isExist.profileDoc}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
+
+      newData = {
+        ...data,
+        profileDoc: `/aboutus/${profileDoc}`,
+      };
     } else {
-      newData = { ...data, image: isExist?.image };
+      newData = {
+        ...data,
+      };
     }
 
     const result = await AboutUs.findByIdAndUpdate(id, newData, {
@@ -121,6 +161,13 @@ exports.updateAboutUs = async (req, res) => {
         console.log(err);
       }
     });
+
+    fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+
     res.status(500).json({
       success: false,
       message: error.message,

@@ -13,9 +13,10 @@ const truncateDescription = (description, maxLength = 100) => {
   };
 
   const plainText = stripHtmlTags(description);
-  const truncatedText = plainText.length > maxLength
-    ? plainText.substring(0, maxLength) + "..."
-    : plainText;
+  const truncatedText =
+    plainText.length > maxLength
+      ? plainText.substring(0, maxLength) + "..."
+      : plainText;
 
   return truncatedText;
 };
@@ -23,18 +24,22 @@ const truncateDescription = (description, maxLength = 100) => {
 export default function Projects() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Projects - GHL";
   }, []);
 
   const { data } = useGetProjectsQuery();
   const projects = data?.data;
-
 
   return (
     <section className="py-5 sm:py-10">
       <div className="container">
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects?.map((project) => (
-            <Link key={project?._id} to={`/project/${project?._id}`} className="project_card">
+            <Link
+              key={project?._id}
+              to={`/project/${project?._id}`}
+              className="project_card"
+            >
               <div className="relative h-60 w-full overflow-hidden rounded-lg">
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${project?.image}`}

@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import { useGetLogosQuery } from "../../Redux/logo/logoApi";
 
 export default function Header() {
-
-  const {data} = useGetLogosQuery();
+  const { data } = useGetLogosQuery();
   const logo = data?.data;
 
   const [showSidebar, setShowSidebar] = useState(false);
@@ -26,11 +25,15 @@ export default function Header() {
   }, [showSidebar]);
 
   return (
-    <header className="relative z-40 pt-2">
+    <header className="relative top-0 z-40 bg-[#ffffff70] pt-2">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold">
-            <img src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`} alt="logo" className="h-16 w-[200px]" />
+            <img
+              src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`}
+              alt="logo"
+              className="h-16 w-[200px]"
+            />
           </Link>
 
           <nav>

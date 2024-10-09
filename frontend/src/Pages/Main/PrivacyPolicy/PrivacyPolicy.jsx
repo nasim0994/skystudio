@@ -1,30 +1,26 @@
 import { useEffect } from "react";
 import { useGetPrivacyQuery } from "../../../Redux/privacy/privacyApi";
 import parse from "html-react-parser";
+import Spinner from "../../../Components/Spinner/Spinner";
 
 export default function PrivacyPolicy() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Privacy Policy - GHL";
   }, []);
 
-  const { data: privacy } = useGetPrivacyQuery();
-  const data = privacy?.data;
+  const { data, isLoading } = useGetPrivacyQuery();
+  const privacy = data?.data;
 
-  const description = parse(data?.description || "");
+  const description = privacy?.description && parse(privacy?.description);
 
-  console.log(description);
+  if (isLoading) return <Spinner />;
 
   return (
     <section className="py-14">
       <div className="container">
         <div>
-          <div className="mt-4">
-            {Array.isArray(description) ? (
-              description.map((item, index) => <div key={index}>{item}</div>)
-            ) : (
-              <div>{description}</div>
-            )}
-          </div>
+          <div className="mt-4">{description}</div>
         </div>
       </div>
     </section>

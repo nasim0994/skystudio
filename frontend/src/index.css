@@ -47,8 +47,8 @@ h2 {
   background: none;
 }
 
-.admin_btn{
-  @apply bg-primary text-white border py-2 px-4 rounded
+.admin_btn {
+  @apply rounded border bg-primary px-4 py-2 text-white;
 }
 
 .primary_btn::before {
@@ -72,14 +72,14 @@ h2 {
 }
 
 .primary_outline_btn {
-  color: #00ce1b;
+  color: var(--primary);
   background: none;
   padding: 8px 20px;
   transition: 0.6s;
 
   border-radius: 20px;
   font-size: 14px;
-  border: 1px solid #00ce1b;
+  border: 1px solid var(--primary);
 
   position: relative;
   overflow: hidden;
@@ -93,7 +93,7 @@ h2 {
   left: 0;
   width: 0%;
   height: 100%;
-  background: #00ce1b;
+  background: var(--primary);
   z-index: -1;
   transition: 0.8s;
 }
@@ -129,7 +129,6 @@ select::placeholder {
 form {
   font-size: 15px;
 }
-
 
 select {
   cursor: pointer;
@@ -168,6 +167,4 @@ table tbody td {
   display: none !important;
 }
 
-
 /* ---------------------------swiper button------------------------- */
-

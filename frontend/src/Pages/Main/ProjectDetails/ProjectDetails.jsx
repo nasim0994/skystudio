@@ -11,13 +11,13 @@ import parse from "html-react-parser";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
 export default function ProjectDetails() {
+  const { id } = useParams();
+  const { data: projectData, error, isLoading } = useGetProjectByIdQuery(id);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  const { id } = useParams();
-
-  const { data: projectData, error, isLoading } = useGetProjectByIdQuery(id);
+    document.title = projectData?.data?.title || "Project Details - GHL";
+  }, [projectData]);
 
   const { data } = useGetRecentProjectsQuery();
 

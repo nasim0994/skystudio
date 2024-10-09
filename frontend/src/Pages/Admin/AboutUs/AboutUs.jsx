@@ -17,6 +17,7 @@ export default function About() {
   const [title, setTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [profile, setProfile] = useState("");
 
   const { data: aboutData, isLoading: isAboutLoading } = useGetAboutUsQuery();
 
@@ -50,6 +51,7 @@ export default function About() {
     formData.append("description", description);
 
     if (img) formData.append("image", img);
+    if (profile) formData.append("profileDoc", profile);
 
     try {
       let result;
@@ -160,6 +162,19 @@ export default function About() {
                   </ImageUploading>
                 </div>
               </div>
+            </div>
+
+            <div>
+              <p className="mb-1">
+                Profile - <small>(only pdf)</small>
+              </p>
+              <input
+                type="file"
+                name="profile"
+                accept="application/pdf"
+                onChange={(e) => setProfile(e.target.files[0])}
+              />
+              {aboutData?.data?.profileDoc && aboutData?.data?.profileDoc}
             </div>
           </div>
 

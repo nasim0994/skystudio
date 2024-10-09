@@ -18,7 +18,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/", getAboutUs);
-router.post("/add-about", upload.single("image"), createAboutUs);
-router.patch("/update-about/:id", upload.single("image"), updateAboutUs);
+router.post(
+  "/add-about",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "profileDoc", maxCount: 1 },
+  ]),
+  createAboutUs
+);
+router.patch(
+  "/update-about/:id",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "profileDoc", maxCount: 1 },
+  ]),
+  updateAboutUs
+);
 
 module.exports = router;
