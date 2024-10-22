@@ -16,7 +16,10 @@ export default function Slider() {
           width="100%"
           className="h-screen object-cover"
         >
-          <source src="/videos/ghl.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/drakdnnj4/video/upload/v1728539265/kbzasbis1mwku01wiyzy.mp4"
+            type="video/mp4"
+          />
         </video>
       </div>
 
