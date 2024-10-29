@@ -14,13 +14,13 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
 
-          localStorage.setItem("gloria_jwt", result?.data?.token);
+          localStorage.setItem("token", result?.data?.token);
 
           dispatch(
             userLoggedIn({
               token: result?.data?.token,
               data: result?.data,
-            })
+            }),
           );
         } catch (error) {
           // Do not any thing , handel error from ui

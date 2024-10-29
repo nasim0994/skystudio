@@ -7,10 +7,10 @@ export default function useAuthCheck() {
   const dispatch = useDispatch();
   const [authChecked, setAuthChecked] = useState(false);
 
-  const localAuth = localStorage?.getItem("gloria_jwt");
+  const localAuth = localStorage?.getItem("token");
   const { isExpired } = useJwt(localAuth);
   if (isExpired) {
-    localStorage.removeItem("gloria_jwt");
+    localStorage.removeItem("token");
   }
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function useAuthCheck() {
               userLoggedIn({
                 token: localAuth,
                 data: data,
-              })
+              }),
             );
           }
         })

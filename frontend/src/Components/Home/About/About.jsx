@@ -39,7 +39,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="primary_btn">Gloria Homes Profile</button>
+                <button className="primary_btn">Astral Interior Profile</button>
               </Link>
             </div>
           </div>

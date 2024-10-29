@@ -68,9 +68,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-neutral-content py-4">
-          <div className="flex items-center justify-between text-[8px] md:text-xs text-neutral-content">
+          <div className="flex items-center justify-between text-[8px] text-neutral-content md:text-xs">
             <p>
-              All Rights Reserved @Gloria Homes LTD. Develop by{" "}
+              All Rights Reserved @Astral Interior. Develop by{" "}
               <Link
                 to="https://www.emanagerit.com"
                 target="_blank"

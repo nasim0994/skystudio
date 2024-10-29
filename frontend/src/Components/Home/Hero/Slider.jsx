@@ -8,20 +8,14 @@ export default function Slider() {
 
   return (
     <div className="hero_slider absolute left-0 top-0 z-30 h-[75vh] w-full sm:h-screen">
-      <div>
-        <video
-          autoPlay
-          loop
-          muted
-          width="100%"
-          className="h-screen object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/drakdnnj4/video/upload/v1728539265/kbzasbis1mwku01wiyzy.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/sNdDcZy9yOQ?si=0DLrWdc7fYJY_3If?autoplay=0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
 
       <div className="hero_btn">
         <button className="text-4xl text-gray-300">
