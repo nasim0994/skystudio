@@ -25,9 +25,9 @@ exports.add = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -49,9 +49,9 @@ exports.getAll = async (req, res) => {
       data: directors,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -75,9 +75,9 @@ exports.getSingle = async (req, res) => {
       data: director,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -131,9 +131,9 @@ exports.update = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -165,9 +165,9 @@ exports.destroy = async (req, res) => {
       message: "Director deleted successfully",
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };

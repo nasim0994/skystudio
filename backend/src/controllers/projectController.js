@@ -9,7 +9,7 @@ exports.addProject = async (req, res) => {
     const gallery = req?.files?.galleryImages?.map((file) => file.filename);
 
     if (!image || !gallery) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Main image and gallery images are required",
       });
@@ -33,7 +33,7 @@ exports.addProject = async (req, res) => {
       data: savedProject,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -49,7 +49,7 @@ exports.getProjects = async (req, res) => {
       data: projects,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -65,7 +65,7 @@ exports.getRecentProjects = async (req, res) => {
       data: projects,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -88,7 +88,7 @@ exports.getProjectById = async (req, res) => {
       data: project,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -143,7 +143,7 @@ exports.updateProject = async (req, res) => {
       data: project,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -178,7 +178,7 @@ exports.deleteProject = async (req, res) => {
       message: "Project deleted successfully",
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

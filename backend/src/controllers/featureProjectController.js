@@ -24,9 +24,9 @@ exports.add = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -48,9 +48,9 @@ exports.getAll = async (req, res) => {
       data: featureProjects,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -74,9 +74,9 @@ exports.getSingle = async (req, res) => {
       data: featureProject,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -102,9 +102,12 @@ exports.update = async (req, res) => {
     }
 
     if (image && existingFeatureProject.image) {
-      fs.unlink(`./uploads/featureProjects/${existingFeatureProject.image}`, (err) => {
-        if (err) console.error("Failed to delete old image:", err);
-      });
+      fs.unlink(
+        `./uploads/featureProjects/${existingFeatureProject.image}`,
+        (err) => {
+          if (err) console.error("Failed to delete old image:", err);
+        }
+      );
     }
 
     const updatedData = {
@@ -113,7 +116,11 @@ exports.update = async (req, res) => {
       image: image ? `featureProjects/${image}` : existingFeatureProject.image,
     };
 
-    const updatedFeatureProject = await FeatureProject.findByIdAndUpdate(id, updatedData, { new: true });
+    const updatedFeatureProject = await FeatureProject.findByIdAndUpdate(
+      id,
+      updatedData,
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
@@ -127,9 +134,9 @@ exports.update = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -160,9 +167,9 @@ exports.destroy = async (req, res) => {
       message: "Feature Project deleted successfully",
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };

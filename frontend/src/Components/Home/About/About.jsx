@@ -9,18 +9,18 @@ export default function About() {
   const description = about?.description && parse(about?.description);
 
   return (
-    <section className="py-10 md:py-20">
+    <section className="py-10">
       <div className="container">
         <div className="grid items-center gap-8 sm:grid-cols-2 md:gap-4">
-          <div>
+          <div data-aos="fade-up">
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${about?.image}`}
               alt="about"
-              className="mx-auto w-[90%] rounded"
+              className="mx-auto w-[80%] rounded"
             />
           </div>
 
-          <div className="">
+          <div data-aos="fade-down">
             <p className="text-sm text-primary">{about?.heading}</p>
 
             <h2 className="mt-4 text-7xl font-medium uppercase text-neutral md:text-8xl">

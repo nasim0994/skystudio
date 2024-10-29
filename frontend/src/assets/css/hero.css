@@ -21,10 +21,11 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 550px;
+  width: 380px;
   height: 100vh;
-  background: #ffffff8a;
-  backdrop-filter: blur(5px);
+  background: #000000be;
+  color: #fff;
+  backdrop-filter: blur(10px);
   padding: 20px 40px;
 
   transition: all 0.5s;
@@ -75,7 +76,6 @@
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
 }
 
 /* hero btn animation updown */
@@ -92,5 +92,22 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+/* hero image animation scale */
+.hero_slider img {
+  animation: scale 15s infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }

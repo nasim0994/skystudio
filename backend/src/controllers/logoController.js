@@ -5,7 +5,7 @@ exports.addLogo = async (req, res) => {
   const file = req?.file?.filename;
   try {
     if (!file) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Logo is required",
       });
@@ -23,7 +23,7 @@ exports.addLogo = async (req, res) => {
         }
       });
 
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Logo already added",
       });
@@ -43,7 +43,7 @@ exports.addLogo = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -60,7 +60,7 @@ exports.getLogos = async (req, res) => {
       data: logo,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -72,7 +72,7 @@ exports.updateLogo = async (req, res) => {
 
   try {
     if (!file) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Logo is required",
       });
@@ -106,7 +106,7 @@ exports.updateLogo = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

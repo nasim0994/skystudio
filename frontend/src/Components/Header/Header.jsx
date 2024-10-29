@@ -25,12 +25,13 @@ export default function Header() {
   }, [showSidebar]);
 
   return (
-    <header className="relative top-0 z-40 bg-[#ffffff70] pt-2">
+    <header className="sticky top-0 z-40 bg-[#00000090] pt-2">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold">
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`}
+              // src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`}
+              src="/logo.png"
               alt="logo"
               className="h-16 w-[200px]"
             />
@@ -39,7 +40,7 @@ export default function Header() {
           <nav>
             <ul className="flex items-center gap-6">
               <li className="hidden sm:block">
-                <Link to="/contact-us" className="primary_outline_btn">
+                <Link to="/contact-us" className="primary_btn">
                   Book Now
                 </Link>
               </li>

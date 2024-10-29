@@ -9,13 +9,14 @@ export default function ProjectHighlight() {
     highlightProject?.description && parser(highlightProject?.description);
 
   return (
-    <section className="py-10">
+    <section className="bg-slate-50 py-10">
       <div className="container">
         <div className="grid items-center gap-4 md:grid-cols-2 md:gap-10">
           <div>
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${highlightProject?.image}`}
-              alt=""
+              alt="project"
+              className="rounded"
             />
           </div>
 

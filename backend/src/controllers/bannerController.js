@@ -7,7 +7,7 @@ exports.addBanner = async (req, res) => {
 
   try {
     if (!video) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Video is required",
       });
@@ -21,7 +21,7 @@ exports.addBanner = async (req, res) => {
         }
       });
 
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Banner already exists",
       });
@@ -45,7 +45,7 @@ exports.addBanner = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -62,7 +62,7 @@ exports.getBanner = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -119,7 +119,7 @@ exports.updateBanner = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

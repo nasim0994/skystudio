@@ -59,17 +59,21 @@ export default function About() {
         result = await updateAboutUs({
           id: aboutData.data._id,
           formData,
-        }).unwrap();
+        });
       } else {
-        result = await createAboutUs(formData).unwrap();
+        result = await createAboutUs(formData);
       }
 
-      if (result.success) {
+      if (result.data?.success) {
         setImage([]);
         Swal.fire("", "About Us saved successfully", "success");
+      } else {
+        Swal.fire("", result.data?.message || "Operation failed", "error");
+        console.log(result);
       }
     } catch (error) {
       Swal.fire("", error?.data?.message || "Operation failed", "error");
+      console.log(error);
     }
   };
 

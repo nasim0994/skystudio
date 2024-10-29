@@ -6,7 +6,7 @@ exports.addSEO = async (req, res) => {
   try {
     const isExist = await SEO.findOne({});
     if (isExist) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "SEO Setting already exist",
       });
@@ -20,7 +20,7 @@ exports.addSEO = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -37,7 +37,7 @@ exports.getSEO = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -75,7 +75,7 @@ exports.updateSEO = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

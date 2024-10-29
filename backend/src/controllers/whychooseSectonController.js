@@ -4,7 +4,7 @@ exports.addWhyChooseSection = async (req, res) => {
   try {
     const isExist = await WhyChooseSection.findOne();
     if (isExist) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "WhyChooseSection already exists",
       });
@@ -18,7 +18,7 @@ exports.addWhyChooseSection = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -30,16 +30,22 @@ exports.updateWhyChooseSection = async (req, res) => {
   const whyChooseSectionId = req.params.id;
 
   try {
-    const whyChooseSection = await WhyChooseSection.findById(whyChooseSectionId);
+    const whyChooseSection = await WhyChooseSection.findById(
+      whyChooseSectionId
+    );
 
     if (!whyChooseSection) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "WhyChooseSection not found",
       });
     }
 
-    const updatedWhyChooseSection = await WhyChooseSection.findByIdAndUpdate(whyChooseSectionId, data, { new: true });
+    const updatedWhyChooseSection = await WhyChooseSection.findByIdAndUpdate(
+      whyChooseSectionId,
+      data,
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
@@ -47,10 +53,10 @@ exports.updateWhyChooseSection = async (req, res) => {
       data: updatedWhyChooseSection,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: "Server error",
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -65,7 +71,7 @@ exports.getWhyChooseSection = async (req, res) => {
       data: whyChooseSection,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });

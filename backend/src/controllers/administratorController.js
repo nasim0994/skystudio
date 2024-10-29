@@ -21,7 +21,7 @@ exports.addAdministrator = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -67,7 +67,7 @@ exports.adminLogin = async (req, res) => {
       data: admin,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -91,7 +91,7 @@ exports.deleteAdmin = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -115,7 +115,7 @@ exports.getAdmins = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -140,7 +140,7 @@ exports.getLoggedAdmin = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });

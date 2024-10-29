@@ -5,7 +5,7 @@ exports.addFavicon = async (req, res) => {
   const icon = req?.file?.filename;
   try {
     if (!icon) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Favicon is required",
       });
@@ -23,7 +23,7 @@ exports.addFavicon = async (req, res) => {
         }
       });
 
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Favicon already exists",
       });
@@ -43,7 +43,7 @@ exports.addFavicon = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: error?.message,
     });
@@ -60,7 +60,7 @@ exports.getFavicons = async (req, res) => {
       data: favicons,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -71,7 +71,7 @@ exports.updateFavicon = async (req, res) => {
   const icon = req?.file?.filename;
   try {
     if (!icon) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Favicon is required",
       });
@@ -105,7 +105,7 @@ exports.updateFavicon = async (req, res) => {
       }
     });
 
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

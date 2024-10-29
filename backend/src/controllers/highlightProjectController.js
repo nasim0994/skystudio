@@ -19,7 +19,7 @@ exports.createProject = async (req, res) => {
         }
       });
 
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "highlightProject already exists",
       });
@@ -38,7 +38,7 @@ exports.createProject = async (req, res) => {
         console.log(err);
       }
     });
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -55,7 +55,7 @@ exports.getProject = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -121,7 +121,7 @@ exports.updateProject = async (req, res) => {
         console.log(err);
       }
     });
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

@@ -4,7 +4,7 @@ exports.addPrivacy = async (req, res) => {
   try {
     const isExist = await Privacy.findOne({});
     if (isExist) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Privacy policy already exists",
       });
@@ -18,7 +18,7 @@ exports.addPrivacy = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -41,7 +41,7 @@ exports.getPrivacy = async (req, res) => {
       data: privacy,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -71,7 +71,7 @@ exports.updatePrivacy = async (req, res) => {
       data: updatedPrivacy,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });

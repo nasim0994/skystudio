@@ -12,35 +12,8 @@ export default function Footer() {
   const contact = data?.data;
 
   return (
-    <footer className="bg-slate-100 pt-16">
+    <footer className="bg-black/90 pt-16">
       <div className="container">
-        <div className="flex items-center justify-center gap-4">
-          <Link
-            to={contact?.facebookLink}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
-          >
-            <FaFacebookF />
-          </Link>
-          <Link
-            to={contact?.linkedinLink}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
-          >
-            <FaLinkedinIn />
-          </Link>
-          <Link
-            to={contact?.twitterLink}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
-          >
-            <FaInstagram />
-          </Link>
-          <Link
-            to={contact?.youtubeLink}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100"
-          >
-            <FaYoutube />
-          </Link>
-        </div>
-
         <div className="mt-8 text-center text-neutral">
           <h2 className="text-[80px] font-medium sm:text-[100px]">
             {contact?.hotNumber}
@@ -68,18 +41,43 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-neutral-content py-4">
-          <div className="flex items-center justify-between text-[8px] text-neutral-content md:text-xs">
+          <div className="flex items-center justify-between text-sm text-neutral-content">
             <p>
               All Rights Reserved @Astral Interior. Develop by{" "}
               <Link
                 to="https://www.emanagerit.com"
                 target="_blank"
-                className="hover:underline"
+                className="underline"
               >
-                eManager It Ltd
+                eManager
               </Link>
             </p>
-            <Link to="/privacy-policy">Privacy Policy</Link>
+            <div className="flex items-center justify-center gap-2">
+              <Link
+                to={contact?.facebookLink}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
+              >
+                <FaFacebookF />
+              </Link>
+              <Link
+                to={contact?.linkedinLink}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
+              >
+                <FaLinkedinIn />
+              </Link>
+              <Link
+                to={contact?.twitterLink}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
+              >
+                <FaInstagram />
+              </Link>
+              <Link
+                to={contact?.youtubeLink}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
+              >
+                <FaYoutube />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

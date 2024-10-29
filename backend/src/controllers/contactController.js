@@ -4,7 +4,7 @@ exports.addContact = async (req, res) => {
   try {
     const isExist = await Contact.findOne();
     if (isExist) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Contact already exists",
       });
@@ -18,7 +18,7 @@ exports.addContact = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -33,7 +33,7 @@ exports.updateContact = async (req, res) => {
     const contact = await Contact.findById(contactId);
 
     if (!contact) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "Contact not found",
       });
@@ -48,7 +48,7 @@ exports.updateContact = async (req, res) => {
       data: updatedContact,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: "Server error",
       error: error.message,
@@ -66,7 +66,7 @@ exports.getContacts = async (req, res) => {
       data: contacts,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });

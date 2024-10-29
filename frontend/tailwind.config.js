@@ -8,11 +8,11 @@ module.exports = {
       "light",
       {
         light: {
-          primary: "#0e4677",
-          secondary: "#FF0000",
+          primary: "#178d85",
+          secondary: "#11716A",
           neutral: "#444",
           "neutral-content": "#757872",
-          "base-100": "#ffffff",
+          "base-100": "#fff",
         },
       },
     ],

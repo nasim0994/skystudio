@@ -6,7 +6,7 @@ exports.add = async (req, res) => {
 
     const isExist = await BusinessInfo.findOne({});
     if (isExist) {
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "BusinessInfo already exists",
       });
@@ -20,7 +20,7 @@ exports.add = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -37,7 +37,7 @@ exports.get = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -59,7 +59,7 @@ exports.update = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    res.json({
       success: false,
       message: error.message,
     });

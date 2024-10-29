@@ -11,7 +11,7 @@ export const aboutApi = apiSlice.injectEndpoints({
 
     createAboutUs: builder.mutation({
       query: (formData) => ({
-        url: `/about/add-about`,
+        url: `/about/add`,
         method: "POST",
         body: formData,
       }),
@@ -20,7 +20,7 @@ export const aboutApi = apiSlice.injectEndpoints({
 
     updateAboutUs: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `/about/update-about/${id}`,
+        url: `/about/update/${id}`,
         method: "PATCH",
         body: formData,
       }),

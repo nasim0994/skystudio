@@ -8,9 +8,9 @@ export default function WhyChoose() {
   const whychooses = whychoose?.data;
 
   return (
-    <section className="bg-slate-100 py-10 md:py-16">
+    <section className="py-10 md:py-16">
       <div className="container">
-        <h2 className="mx-auto w-72 text-center text-3xl md:text-5xl font-medium text-neutral md:w-[550px]">
+        <h2 className="mx-auto w-72 text-center text-3xl font-medium text-neutral md:w-[550px] md:text-5xl">
           {section?.title}
         </h2>
         <div className="mt-6">

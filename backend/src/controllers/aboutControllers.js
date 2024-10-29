@@ -2,15 +2,22 @@ const fs = require("fs");
 const AboutUs = require("../models/aboutModel");
 
 exports.createAboutUs = async (req, res) => {
-  const image = req?.file?.filename;
-  const profileDoc = req?.files?.profileDoc[0]?.filename;
-  const data = req?.body;
+  const image = req.files["image"] ? req.files["image"][0]?.filename : null;
+  const profileDoc = req.files["profileDoc"]?.filename
+    ? req.files["profileDoc"][0]
+    : null;
 
-  const aboutUs = {
+  let aboutUs = {
     ...data,
     image: `/aboutus/${image}`,
-    profileDoc: `/aboutus/${profileDoc}`,
   };
+
+  if (profileDoc) {
+    aboutUs = {
+      ...aboutUs,
+      profileDoc: `/aboutus/${profileDoc}`,
+    };
+  }
 
   try {
     const isExist = await AboutUs.findOne();
@@ -21,7 +28,7 @@ exports.createAboutUs = async (req, res) => {
         }
       });
 
-      return res.status(400).json({
+      return res.json({
         success: false,
         message: "About Us already exists",
       });
@@ -35,22 +42,26 @@ exports.createAboutUs = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    fs.unlink(`./uploads/aboutus/${image}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
+
+    if (image) {
+      fs.unlink(`./uploads/aboutus/${image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+    if (profileDoc) {
+      fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   }
 };
 
@@ -64,7 +75,7 @@ exports.getAboutUs = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: err.message,
     });
@@ -73,9 +84,11 @@ exports.getAboutUs = async (req, res) => {
 
 exports.updateAboutUs = async (req, res) => {
   const id = req?.params?.id;
-  const image = req?.file?.filename;
-  const profileDoc = req?.files?.profileDoc?.[0]?.filename;
   const data = req?.body;
+  const image = req.files["image"] ? req.files["image"][0]?.filename : null;
+  const profileDoc = req.files["profileDoc"]
+    ? req.files["profileDoc"][0]?.filename
+    : null;
 
   try {
     const isExist = await AboutUs.findById(id);
@@ -89,53 +102,16 @@ exports.updateAboutUs = async (req, res) => {
 
     let newData;
 
-    if (image && profileDoc) {
-      fs.unlink(`./uploads/${isExist.image}`, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
-
-      fs.unlink(`./uploads/${isExist.profileDoc}`, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
-
-      newData = {
-        ...data,
-        image: `/aboutus/${image}`,
-        profileDoc: `/aboutus/${profileDoc}`,
-      };
-    } else if (image) {
-      fs.unlink(`./uploads/${isExist.image}`, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
-
+    if (image) {
       newData = {
         ...data,
         image: `/aboutus/${image}`,
       };
-    } else if (profileDoc) {
-      fs.unlink(`./uploads/${isExist.profileDoc}`, (err) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      });
-
+    }
+    if (profileDoc) {
       newData = {
         ...data,
         profileDoc: `/aboutus/${profileDoc}`,
-      };
-    } else {
-      newData = {
-        ...data,
       };
     }
 
@@ -155,22 +131,42 @@ exports.updateAboutUs = async (req, res) => {
       message: "About Us updated successfully",
       data: result,
     });
+
+    if (image && isExist?.image) {
+      fs.unlink(`./uploads/${isExist?.image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+    if (profileDoc && isExist?.profileDoc) {
+      fs.unlink(`./uploads/${isExist?.profileDoc}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   } catch (error) {
-    fs.unlink(`./uploads/aboutus/${image}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
+
+    if (image) {
+      fs.unlink(`./uploads/aboutus/${image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+    if (profileDoc) {
+      fs.unlink(`./uploads/aboutus/${profileDoc}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   }
 };

@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 
 router.get("/", getAboutUs);
 router.post(
-  "/add-about",
+  "/add",
   upload.fields([
     { name: "image", maxCount: 1 },
     { name: "profileDoc", maxCount: 1 },
@@ -27,7 +27,7 @@ router.post(
   createAboutUs
 );
 router.patch(
-  "/update-about/:id",
+  "/update/:id",
   upload.fields([
     { name: "image", maxCount: 1 },
     { name: "profileDoc", maxCount: 1 },

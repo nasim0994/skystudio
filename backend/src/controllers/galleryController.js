@@ -13,9 +13,9 @@ exports.add = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: err.message,
+      message: err.message,
     });
 
     if (image) {
@@ -35,7 +35,7 @@ exports.get = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         success: false,
-        error: "Gallery not found",
+        message: "Gallery not found",
       });
     }
 
@@ -45,9 +45,9 @@ exports.get = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: err.message,
+      message: err.message,
     });
   }
 };
@@ -60,7 +60,7 @@ exports.getSingle = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         success: false,
-        error: "Gallery not found",
+        message: "Gallery not found",
       });
     }
 
@@ -70,9 +70,9 @@ exports.getSingle = async (req, res) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: err.message,
+      message: err.message,
     });
   }
 };
@@ -86,7 +86,7 @@ exports.destroy = async (req, res) => {
     if (!isExist) {
       return res.status(404).json({
         success: false,
-        error: "Gallery not found",
+        message: "Gallery not found",
       });
     }
 
@@ -105,9 +105,9 @@ exports.destroy = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
-      error: error.message,
+      message: error.message,
     });
   }
 };

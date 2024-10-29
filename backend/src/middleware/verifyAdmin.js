@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
   try {
     const token = req.headers?.authorization?.split(" ")[1];
     if (!token) {
-      return res.status(401).json({
+      return res.json({
         success: false,
         message: "You are not logged in",
       });
@@ -13,13 +13,13 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await User.findOne({ username: decoded.username });
     if (!user) {
-      return res.status(403).json({
+      return res.json({
         success: false,
         message: "User Not Found",
       });
     }
     if (user.role !== "admin") {
-      return res.status(403).json({
+      return res.json({
         success: false,
         message: "Forbidden access",
       });
@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    res.status(403).json({
+    res.json({
       success: false,
       error,
     });

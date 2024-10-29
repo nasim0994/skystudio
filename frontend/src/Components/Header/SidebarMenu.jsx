@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useGetContactsQuery } from "../../Redux/contact/contactApi";
 
 export default function SidebarMenu({ showSidebar, setShowSidebar }) {
-
   const { data } = useGetContactsQuery();
 
   const contactUs = data?.data;
@@ -21,7 +20,7 @@ export default function SidebarMenu({ showSidebar, setShowSidebar }) {
         </button>
       </div>
 
-      <div className="mt-6 grid md:grid-cols-2">
+      <div className="mt-6">
         <ul className="flex flex-col gap-3 text-lg">
           <li>
             <Link to="/">Home</Link>
@@ -39,36 +38,6 @@ export default function SidebarMenu({ showSidebar, setShowSidebar }) {
             <Link to="/privacy-policy">Privacy Policy</Link>
           </li>
         </ul>
-
-        <div className="hidden md:block">
-          <h2 className="text-2xl">Contact Us</h2>
-          <ul className="mt-2 flex flex-col gap-3">
-            <li>
-              <Link to="/" className="flex items-start gap-2 text-neutral">
-                <p>
-                  <FaMapMarkerAlt className="mt-1.5 text-[17px]" />
-                </p>
-                <p>{contactUs?.address}</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className="flex items-start gap-2 text-neutral">
-                <p>
-                  <MdEmail className="mt-1 text-base" />
-                </p>
-                <p>{contactUs?.email}</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className="flex items-start gap-2 text-neutral">
-                <p>
-                  <FaPhone className="mt-1 text-sm" />
-                </p>
-                <p>{contactUs?.phone}</p>
-              </Link>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   );

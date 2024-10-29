@@ -9,7 +9,7 @@ exports.getAllContactMsgs = async (req, res) => {
       data: messages,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -32,7 +32,7 @@ exports.getContactMsgById = async (req, res) => {
       data: message,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -49,7 +49,7 @@ exports.addContactMsg = async (req, res) => {
       data: newMessage,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
@@ -72,7 +72,7 @@ exports.deleteContactMsg = async (req, res) => {
       data: message,
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: error.message,
     });
