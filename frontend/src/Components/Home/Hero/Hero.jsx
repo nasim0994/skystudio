@@ -13,7 +13,7 @@ export default function Hero() {
   // const video = data?.data?.video;
 
   return (
-    <div className="hero_slider absolute left-0 top-0 z-30 h-[75vh] w-full sm:h-screen">
+    <div className="hero_slider absolute left-0 top-0 z-30 h-[60vh] w-full sm:h-screen">
       <Swiper
         slidesPerView={1}
         effect={"fade"}
@@ -24,7 +24,7 @@ export default function Hero() {
         className="h-full w-full"
       >
         <SwiperSlide>
-          <div className="overflow-hidden">
+          <div className="h-full overflow-hidden">
             <img
               src="/slider.jpg"
               alt="slider"
@@ -33,7 +33,7 @@ export default function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="overflow-hidden">
+          <div className="h-full overflow-hidden">
             <img
               src="/slider2.jpg"
               alt="slider"
@@ -42,7 +42,7 @@ export default function Hero() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="overflow-hidden">
+          <div className="h-full overflow-hidden">
             <img
               src="/slider3.jpg"
               alt="slider"
@@ -53,7 +53,7 @@ export default function Hero() {
       </Swiper>
 
       <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/20 text-base-100">
-        <h2 className="text_shadow fade-up-animation text-center text-6xl font-medium">
+        <h2 className="text_shadow fade-up-animation text-center text-4xl font-medium sm:text-6xl">
           Welcome to Astral Interior
         </h2>
       </div>

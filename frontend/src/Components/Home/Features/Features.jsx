@@ -38,7 +38,7 @@ export default function Features() {
           swiperRef.current = swiper;
         }}
         modules={[Navigation, A11y, Autoplay, EffectFade]}
-        className="h-[600px] w-full"
+        className="h-[500px] w-full sm:h-[600px]"
       >
         {projects?.map((project) => (
           <SwiperSlide key={project?._id} className="h-full w-full">
@@ -49,10 +49,10 @@ export default function Features() {
                     <h3 className="text-xl font-medium">Feature Projects</h3>
 
                     <div className={animateImage ? "fade-up-animation" : ""}>
-                      <h2 className="mt-10 text-2xl font-medium uppercase md:text-4xl">
+                      <h2 className="mt-10 text-3xl font-medium uppercase md:text-4xl">
                         {project?.title}
                       </h2>
-                      <div className="mt-2 text-[8px] md:text-base">
+                      <div className="mt-2 text-xs md:text-base">
                         {parser(project?.description)}
                       </div>
                     </div>
@@ -80,7 +80,7 @@ export default function Features() {
                     <img
                       src={`${import.meta.env.VITE_BACKEND_URL}/${project?.image}`}
                       alt={project?.title}
-                      className="h-[350px] w-full rounded object-cover"
+                      className="h-60 w-full rounded object-cover sm:h-[350px]"
                     />
                   </div>
                 </div>

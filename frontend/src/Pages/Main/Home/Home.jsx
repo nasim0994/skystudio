@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="mt-[90vh]">
+      <div className="mt-[55vh] sm:mt-[90vh]">
         <About />
       </div>
       <Features />

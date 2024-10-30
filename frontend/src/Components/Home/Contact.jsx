@@ -4,8 +4,8 @@ export default function Contact() {
   return (
     <section className="py-10">
       <div className="container">
-        <div className="flex items-center justify-between">
-          <h2 className="text-5xl font-medium text-neutral">
+        <div className="items-center justify-between sm:flex">
+          <h2 className="text-4xl font-medium text-neutral sm:text-5xl">
             Have Any Question?
           </h2>
           <Link to="/contact-us" className="primary_btn">

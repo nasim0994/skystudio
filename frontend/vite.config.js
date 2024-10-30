@@ -5,9 +5,9 @@ export default defineConfig({
   plugins: [react()],
 
   server: {
-    port: 1400,
+    port: 3900,
   },
   preview: {
-    port: 1400,
+    port: 3900,
   },
 });
