@@ -4,42 +4,100 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
+import { BsTelephone } from "react-icons/bs";
+import { MdOutlineLocationOn, MdOutlineMail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useGetContactsQuery } from "../../Redux/contact/contactApi";
+import { useGetLogosQuery } from "../../Redux/logo/logoApi";
+import { useGetBusinessInfoQuery } from "../../Redux/businessInfo/businessInfoApi";
 
 export default function Footer() {
+  const { data: logos } = useGetLogosQuery();
+  const logo = logos?.data;
+
   const { data } = useGetContactsQuery();
   const contact = data?.data;
+
+  const { data: businessData } = useGetBusinessInfoQuery();
+  const businessInfo = businessData?.data;
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-black/90 pt-16">
       <div className="container">
-        <div className="mt-8 text-center text-neutral">
-          <h2 className="text-[80px] font-medium sm:text-[100px]">
-            {contact?.hotNumber}
-          </h2>
-          <div className="-mt-5 text-[15px] sm:-mt-7">
-            <p>{contact?.address}</p>
-            <p>{contact?.email}</p>
-            <p>{contact?.phone}</p>
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+          <div className="md:col-span-2">
+            <img
+              src={import.meta.env.VITE_BACKEND_URL + logo?.logo}
+              alt="logo"
+              className="w-60"
+              loading="lazy"
+            />
+            <p className="mt-3 text-sm text-gray-300">
+              {businessInfo?.tagline}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-medium text-gray-200">Informations</h2>
+            <ul className="mt-4 flex flex-col gap-1.5 text-[15px] font-light text-gray-300">
+              <li>
+                <Link to="/" className="hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="about-us" className="hover:underline">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to={`/services`} className="hover:underline">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to={`/projects`} className="hover:underline">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link to={`/contact-us`} className="hover:underline">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-medium text-gray-200">Contact</h2>
+            <ul className="mt-4 flex flex-col gap-1.5 text-[15px] font-light text-gray-300">
+              <li>
+                <p className="flex items-center gap-1.5">
+                  <BsTelephone />
+                  {contact?.phone}
+                </p>
+              </li>
+              <li>
+                <p className="flex items-center gap-1.5">
+                  <MdOutlineMail />
+                  {contact?.email}
+                </p>
+              </li>
+              <li>
+                <div className="flex gap-1">
+                  <p className="mt-1 text-lg">
+                    <MdOutlineLocationOn />
+                  </p>
+                  <p>{contact?.address}</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-center gap-4 text-neutral-content">
-          <Link to="" className="duration-200 hover:text-primary">
-            Home
-          </Link>
-          <Link to="/about-us" className="duration-200 hover:text-primary">
-            About
-          </Link>
-          <Link to="/contact-us" className="duration-200 hover:text-primary">
-            Contact
-          </Link>
-          <Link to="/projects" className="duration-200 hover:text-primary">
-            Projects
-          </Link>
-        </div>
-
+        {/* bottom */}
         <div className="mt-8 border-t border-neutral-content py-4">
           <div className="flex items-center justify-between text-sm text-neutral-content">
             <p>

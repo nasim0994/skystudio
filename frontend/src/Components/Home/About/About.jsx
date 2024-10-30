@@ -9,7 +9,7 @@ export default function About() {
   const description = about?.description && parse(about?.description);
 
   return (
-    <section className="py-10">
+    <section className="py-10 bg-stone-100">
       <div className="container">
         <div className="grid items-center gap-8 sm:grid-cols-2 md:gap-4">
           <div data-aos="fade-up">

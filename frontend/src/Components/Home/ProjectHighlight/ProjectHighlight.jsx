@@ -9,7 +9,7 @@ export default function ProjectHighlight() {
     highlightProject?.description && parser(highlightProject?.description);
 
   return (
-    <section className="bg-slate-50 py-10">
+    <section className="bg-stone-50 py-10">
       <div className="container">
         <div className="grid items-center gap-4 md:grid-cols-2 md:gap-10">
           <div>

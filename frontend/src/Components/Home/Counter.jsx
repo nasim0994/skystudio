@@ -1,46 +1,68 @@
+import { useState } from "react";
+import CountUp from "react-countup";
+import ScrollTrigger from "react-scroll-trigger";
+
 export default function Counter() {
+  const [count, setCount] = useState(false);
+
+  const counter = [
+    {
+      title: "Our Achievements",
+      number: 1000,
+    },
+    {
+      title: "Happy Clients",
+      number: 500,
+    },
+    {
+      title: "Projects Done",
+      number: 300,
+    },
+    {
+      title: "Awards Won",
+      number: 100,
+    },
+    {
+      title: "Years of Experience",
+      number: 10,
+    },
+  ];
+
   return (
-    <section className="bg-slate-100 py-20">
+    <section
+      className="py-10 text-base-100 sm:py-20"
+      style={{
+        backgroundImage: `linear-gradient(80deg, #0000009a, #0000009a),url("/slider.jpg")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="container">
-        <div className="relative grid grid-cols-2">
-          <div className="flex flex-col gap-20">
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-          </div>
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <img src="/counter.avif" alt="" className="h-[700px]" />
-          </div>
-          <div className="flex flex-col gap-20 text-end">
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div>
-              <h2 className="text-5xl font-semibold text-primary">7M+</h2>
-              <p>Lorem, ipsum dolor.</p>
-            </div>
+        <div>
+          <h2 className="mb-10 text-center text-4xl font-bold text-base-100">
+            Our Success Stories
+          </h2>
+
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
+            {counter?.map((item, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-1 text-center"
+              >
+                <ScrollTrigger
+                  onEnter={() => setCount(true)}
+                  onExit={() => setCount(false)}
+                >
+                  {count && (
+                    <h2 className="text-2xl font-semibold sm:text-4xl">
+                      <CountUp start={0} end={item?.number} />+
+                    </h2>
+                  )}
+                </ScrollTrigger>
+                <p className="text-base text-gray-300">{item?.title}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
