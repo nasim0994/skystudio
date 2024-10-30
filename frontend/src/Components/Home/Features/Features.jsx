@@ -48,10 +48,7 @@ export default function Features() {
                   <div className="text-base-100">
                     <h3 className="text-xl font-medium">Feature Projects</h3>
 
-                    <div
-                      data-aos="fade-down"
-                      className={animateImage ? "fade-up-animation" : ""}
-                    >
+                    <div className={animateImage ? "fade-up-animation" : ""}>
                       <h2 className="mt-10 text-2xl font-medium uppercase md:text-4xl">
                         {project?.title}
                       </h2>
@@ -77,7 +74,6 @@ export default function Features() {
                   </div>
 
                   <div
-                    data-aos="fade-up"
                     data-aos-anchor-placement="top-center"
                     className={animateImage ? "fade-up-animation" : ""}
                   >

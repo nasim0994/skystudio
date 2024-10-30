@@ -35,7 +35,7 @@ export default function Services() {
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {services?.map((service, i) => (
-            <div key={i} className="feature_card">
+            <div key={i} className="feature_card" data-aos="zoom-in">
               <img
                 src={service?.icon}
                 alt="feature"

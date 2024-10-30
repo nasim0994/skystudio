@@ -53,7 +53,7 @@ export default function Hero() {
       </Swiper>
 
       <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/20 text-base-100">
-        <h2 className="text_shadow text-center text-6xl font-medium">
+        <h2 className="text_shadow fade-up-animation text-center text-6xl font-medium">
           Welcome to Astral Interior
         </h2>
       </div>

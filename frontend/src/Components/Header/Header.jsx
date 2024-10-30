@@ -25,7 +25,7 @@ export default function Header() {
   }, [showSidebar]);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#00000090] pt-2">
+    <header className="sticky top-0 z-40 bg-[#0000004f] pt-2">
       <div className="container">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold">

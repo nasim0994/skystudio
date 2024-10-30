@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 export default function Contactus() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Contact Us - GHL";
   }, []);
 
   const [name, setName] = useState("");

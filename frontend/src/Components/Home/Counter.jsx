@@ -40,7 +40,7 @@ export default function Counter() {
     >
       <div className="container">
         <div>
-          <h2 className="mb-10 text-center text-4xl font-bold text-base-100">
+          <h2 className="fade-up-animation mb-10 text-center text-4xl font-bold text-base-100">
             Our Success Stories
           </h2>
 

@@ -4,15 +4,10 @@ import Spinner from "../Components/Spinner/Spinner";
 import Home from "../Pages/Main/Home/Home";
 
 // Lazy loading the components
+const FAQPage = lazy(() => import("../Pages/Main/FAQPage"));
+const ServicesPage = lazy(() => import("../Pages/Main/ServicesPage"));
 const Aboutus = lazy(() => import("../Pages/Main/Aboutus/Aboutus"));
 const Contactus = lazy(() => import("../Pages/Main/Contactus/Contactus"));
-const PrivacyPolicy = lazy(
-  () => import("../Pages/Main/PrivacyPolicy/PrivacyPolicy"),
-);
-const ProjectDetails = lazy(
-  () => import("../Pages/Main/ProjectDetails/ProjectDetails"),
-);
-const Projects = lazy(() => import("../Pages/Main/Projects/Projects"));
 
 export const mainRoutes = {
   path: "/",
@@ -23,18 +18,10 @@ export const mainRoutes = {
       element: <Home />,
     },
     {
-      path: "/projects",
+      path: "/services",
       element: (
         <Suspense fallback={<Spinner />}>
-          <Projects />
-        </Suspense>
-      ),
-    },
-    {
-      path: "/project/:id",
-      element: (
-        <Suspense fallback={<Spinner />}>
-          <ProjectDetails />
+          <ServicesPage />
         </Suspense>
       ),
     },
@@ -55,10 +42,10 @@ export const mainRoutes = {
       ),
     },
     {
-      path: "/privacy-policy",
+      path: "/faq",
       element: (
         <Suspense fallback={<Spinner />}>
-          <PrivacyPolicy />
+          <FAQPage />
         </Suspense>
       ),
     },

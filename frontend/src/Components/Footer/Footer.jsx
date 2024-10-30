@@ -58,11 +58,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to={`/projects`} className="hover:underline">
-                  Projects
-                </Link>
-              </li>
-              <li>
                 <Link to={`/contact-us`} className="hover:underline">
                   Contact
                 </Link>
@@ -110,6 +105,8 @@ export default function Footer() {
                 eManager
               </Link>
             </p>
+
+            {/*  */}
             <div className="flex items-center justify-center gap-2">
               <Link
                 to={contact?.facebookLink}
