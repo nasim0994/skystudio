@@ -9,27 +9,25 @@ export default function About() {
   const description = about?.description && parse(about?.description);
 
   return (
-    <section className="py-10 bg-stone-100">
+    <section className="bg-stone-100 py-10">
       <div className="container">
         <div className="grid items-center gap-8 sm:grid-cols-2 md:gap-4">
           <div data-aos="fade-up">
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${about?.image}`}
               alt="about"
-              className="mx-auto w-[80%] rounded"
+              className="mx-auto w-[90%] rounded"
             />
           </div>
 
           <div data-aos="fade-down">
             <p className="text-sm text-primary">{about?.heading}</p>
 
-            <h2 className="mt-4 text-7xl font-medium uppercase text-neutral md:text-8xl">
+            <h2 className="mt-4 text-3xl font-medium uppercase text-neutral md:text-5xl">
               {about?.title}
             </h2>
 
-            <h2 className="mt-1 text-3xl"> {about?.subTitle} </h2>
-
-            <div className="mt-4 text-[10px] text-neutral-content md:text-[15px]">
+            <div className="mt-2 text-neutral-content md:text-sm">
               {description}
             </div>
 
@@ -39,7 +37,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="primary_btn">Astral Interior Profile</button>
+                <button className="primary_btn">Our Profile</button>
               </Link>
             </div>
           </div>

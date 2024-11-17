@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #178d85;
+  --primary: #d6b33f;
   --secondary: #178d85;
 }
 
@@ -310,8 +310,8 @@ table tbody td {
 }
 
 /* ---------------------------------- */
-.feature_card {
-  background: var(--primary);
+.service_card {
+  background: linear-gradient(to bottom, var(--primary), var(--primary));
   color: #fff;
   padding: 40px;
   border-radius: 10px;
@@ -324,23 +324,20 @@ table tbody td {
   transition: all 0.5s ease;
 }
 
-.feature_card h2 {
+.service_card:hover {
+  background: linear-gradient(to bottom, var(--secondary), var(--secondary));
+}
+
+.service_card h2 {
   margin-top: 16px;
   font-size: 28px;
   font-weight: 600;
 }
 
-.feature_card p {
+.service_card p {
   margin-top: 16px;
   font-size: 15px;
   font-weight: 400;
-}
-
-.feature_card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-  background: var(--secondary);
 }
 
 /* ----------------FAQ--------------------- */

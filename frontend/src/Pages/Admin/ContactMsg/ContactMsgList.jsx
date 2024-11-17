@@ -53,7 +53,7 @@ export default function ContactMsgList() {
           <tr key={msg?._id}>
             <td>{new Date(msg?.createdAt).toLocaleDateString()}</td>
             <td>{msg?.name}</td>
-            <td>{msg?.email}</td>
+            <td>{msg?.phone}</td>
             <td>
               <div className="flex gap-2">
                 <Link to={`/admin/contact-msg/${msg?._id}`}>
@@ -82,7 +82,7 @@ export default function ContactMsgList() {
             <tr>
               <th>SL</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Number</th>
               <th>Action</th>
             </tr>
           </thead>

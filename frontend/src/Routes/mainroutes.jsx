@@ -9,6 +9,9 @@ const ServicesPage = lazy(() => import("../Pages/Main/ServicesPage"));
 const Aboutus = lazy(() => import("../Pages/Main/Aboutus/Aboutus"));
 const Contactus = lazy(() => import("../Pages/Main/Contactus/Contactus"));
 
+const ServiceDetails = lazy(() => import("../Pages/Main/ServiceDetails"));
+const PrivacyPolicy = lazy(() => import("../Pages/Main/PrivacyPolicy"));
+
 export const mainRoutes = {
   path: "/",
   element: <MainLayout />,
@@ -22,6 +25,14 @@ export const mainRoutes = {
       element: (
         <Suspense fallback={<Spinner />}>
           <ServicesPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/service/:id",
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <ServiceDetails />
         </Suspense>
       ),
     },
@@ -46,6 +57,14 @@ export const mainRoutes = {
       element: (
         <Suspense fallback={<Spinner />}>
           <FAQPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/privacy-policy",
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <PrivacyPolicy />
         </Suspense>
       ),
     },

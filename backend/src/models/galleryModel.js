@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
 
 const GallerySchema = new mongoose.Schema({
-  image: {
-    type: String,
+  images: {
+    type: Array,
+    required: true,
+  },
+  service: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Service",
     required: true,
   },
 });

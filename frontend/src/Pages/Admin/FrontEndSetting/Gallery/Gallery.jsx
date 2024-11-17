@@ -1,8 +1,12 @@
+import { AiFillEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import { useDeleteGalleryByIdMutation, useGetGalleryQuery } from "../../../../Redux/gallery/galleryApi";
+import {
+  useDeleteGalleryByIdMutation,
+  useGetGalleryQuery,
+} from "../../../../Redux/gallery/galleryApi";
 import Spinner from "../../../../Components/Spinner/Spinner";
 
 export default function Gallery() {
@@ -14,20 +18,12 @@ export default function Gallery() {
     const isConfirm = window.confirm("Are you sure delete this product?");
     if (isConfirm) {
       try {
-        const res = await deleteGallery(id).unwrap();
-        if (res?.success) {
-          Swal.fire({
-            title: "",
-            text: "Gallery Deleted Successfully",
-            icon: "success",
-          });
+        const res = await deleteGallery(id);
+        if (res?.data?.success) {
+          Swal.fire("", "Gallery Deleted Successfully", "success");
         }
       } catch (error) {
-        Swal.fire({
-          title: "",
-          text: "Something went wrong",
-          icon: "error",
-        });
+        Swal.fire("", "Something went wrong", "error");
       }
     }
   };
@@ -37,7 +33,7 @@ export default function Gallery() {
 
   if (isError) {
     content = (
-      <p className="text-red-500 mt-5">Something went wrong to get data!</p>
+      <p className="mt-5 text-red-500">Something went wrong to get data!</p>
     );
   }
 
@@ -48,16 +44,27 @@ export default function Gallery() {
           <tr key={gallery?._id}>
             <td>{i + 1}</td>
             <td>
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/gallery/${
-                  gallery?.image
-                }`}
-                alt={gallery?.image}
-                className="w-14 h-8 rounded"
-              />
+              <div className="flex -space-x-4 rtl:space-x-reverse">
+                {gallery?.images?.map((img, i) => (
+                  <img
+                    key={i}
+                    className="obejct-cover h-10 w-10 rounded-full border-2 border-base-100"
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${img}`}
+                    alt="gallery"
+                  />
+                ))}
+              </div>
             </td>
+            <td>{gallery?.service?.title}</td>
             <td>
-              <div className="flex gap-3 items-center">
+              <div className="flex items-center gap-3">
+                <Link
+                  to={`/admin/service/gallery/edit/${gallery?._id}`}
+                  className="text-lg hover:text-green-500"
+                >
+                  <AiFillEdit />
+                </Link>
+
                 <button onClick={() => handleDelete(gallery?._id)}>
                   <AiOutlineDelete className="text-lg hover:text-red-500" />
                 </button>
@@ -71,24 +78,22 @@ export default function Gallery() {
 
   return (
     <section>
-      <div className="p-4 border-b bg-base-100 rounded">
-        <div className="flex justify-between items-center">
+      <div className="rounded border-b bg-base-100 p-4">
+        <div className="flex items-center justify-between">
           <h1 className="font-medium text-neutral">Gallery</h1>
-          <Link
-            to="/admin/front-end/gallery/add"
-            className="admin_btn text-sm"
-          >
+          <Link to="/admin/service/gallery/add" className="admin_btn text-sm">
             Add Gallery
           </Link>
         </div>
       </div>
 
-      <div className="relative overflow-x-auto mt-2">
+      <div className="relative mt-2 overflow-x-auto">
         <table>
           <thead>
             <tr>
               <th>SL</th>
               <th>Image</th>
+              <th>Service</th>
               <th>Action</th>
             </tr>
           </thead>

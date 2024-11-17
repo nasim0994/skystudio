@@ -8,6 +8,8 @@ export default function ProjectHighlight() {
   const description =
     highlightProject?.description && parser(highlightProject?.description);
 
+  if (!highlightProject) return null;
+
   return (
     <section className="bg-stone-50 py-10">
       <div className="container">

@@ -7,10 +7,8 @@
   top: 0;
   box-shadow: 1px 1px 10px #ddd;
   background: #fff;
-}
 
-.admin_sidebar::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: none;
 }
 
 .admin_content {
@@ -84,12 +82,10 @@
   max-height: 0px;
   overflow: hidden;
   transition: all 0.3s ease;
-
 }
 
 .admin_siderbar .subDropdown_show {
   transition: all 0.3s ease;
-
 }
 
 @media only screen and (max-width: 1024px) {

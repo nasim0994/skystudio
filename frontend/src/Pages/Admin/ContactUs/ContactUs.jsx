@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import swal from "sweetalert2";
 import {
   useGetContactsQuery,
@@ -15,61 +14,39 @@ export default function ContactUs() {
   const [updateContact, { isLoading: updateIsLoading }] =
     useUpdateContactMutation();
 
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [hotNumber, setHotNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [wpLink, setWpLink] = useState("");
-  const [facebookLink, setFacebookLink] = useState("");
-  const [twitterLink, setTwitterLink] = useState("");
-  const [linkedinLink, setLinkedinLink] = useState("");
-  const [youtubeLink, setYoutubeLink] = useState("");
-
-  useEffect(() => {
-    if (contactUs) {
-      setEmail(contactUs.email || "");
-      setPhone(contactUs.phone || "");
-      setHotNumber(contactUs.hotNumber || "");
-      setAddress(contactUs.address || "");
-      setWpLink(contactUs.wpLink || "");
-      setFacebookLink(contactUs.facebookLink || "");
-      setTwitterLink(contactUs.twitterLink || "");
-      setLinkedinLink(contactUs.linkedinLink || "");
-      setYoutubeLink(contactUs.youtubeLink || "");
-    }
-  }, [contactUs]);
-
   const handleAddUpdate = async (e) => {
     e.preventDefault();
 
     const formData = {
-      email,
-      phone,
-      hotNumber,
-      address,
-      wpLink,
-      facebookLink,
-      twitterLink,
-      linkedinLink,
-      youtubeLink,
+      title: e.target.title.value,
+      description: e.target.description.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      address: e.target.address.value,
+      map: e.target.map.value,
+      facebookLink: e.target.facebookLink.value,
+      twitterLink: e.target.twitterLink.value,
+      linkedinLink: e.target.linkedinLink.value,
+      youtubeLink: e.target.youtubeLink.value,
     };
 
     try {
-      let res;
       if (id) {
-        res = await updateContact({ id, info: formData }).unwrap();
+        const res = await updateContact({ id, info: formData });
+        if (res?.data?.success) {
+          swal.fire("", `Contact update successfully`, "success");
+        } else {
+          swal.fire("", "Something went wrong!", "error");
+        }
       } else {
-        res = await addContact(formData).unwrap();
-      }
-
-      if (res?.success) {
-        swal.fire(
-          "",
-          `Contact ${id ? "updated" : "added"} successfully`,
-          "success",
-        );
-      } else {
-        swal.fire("", "Something went wrong!", "error");
+        const res = await addContact(formData);
+        if (res?.data?.success) {
+          swal.fire("", `Contact add successfully`, "success");
+          console.log(res);
+        } else {
+          swal.fire("", "Something went wrong!", "error");
+          console.log(res);
+        }
       }
     } catch (error) {
       swal.fire("", error.message || "Something went wrong!", "error");
@@ -85,57 +62,48 @@ export default function ContactUs() {
       </div>
 
       <form className="p-4" onSubmit={handleAddUpdate}>
-        <div className="grid items-start gap-4 text-neutral-content sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <p className="mb-1">Title</p>
+            <input type="text" name="title" defaultValue={contactUs?.title} required />
+          </div>
+          <div>
+            <p className="mb-1">Description</p>
+            <input
+              type="text"
+              name="description"
+              defaultValue={contactUs?.description}
+              required
+            />
+          </div>
+        </div>
+        <div className="mt-4 grid items-start gap-4 text-neutral-content sm:grid-cols-2 md:grid-cols-3">
           <div>
             <p className="mb-1">Email</p>
             <input
               type="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              defaultValue={contactUs?.email}
               required
             />
           </div>
           <div>
             <p className="mb-1">Phone</p>
-            <input
-              type="tel"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <p className="mb-1">Hot Number</p>
-            <input
-              type="tel"
-              name="hotNumber"
-              value={hotNumber}
-              onChange={(e) => setHotNumber(e.target.value)}
-              required
-            />
+            <input type="tel" name="phone" defaultValue={contactUs?.phone} required />
           </div>
 
           <div>
             <p className="mb-1">Address</p>
             <textarea
               name="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              defaultValue={contactUs?.address}
               required
             ></textarea>
           </div>
 
           <div>
-            <p className="mb-1">Whatsapp Number</p>
-            <input
-              type="text"
-              name="wpLink"
-              value={wpLink}
-              onChange={(e) => setWpLink(e.target.value)}
-              required
-            />
+            <p className="mb-1">Map URL</p>
+            <textarea name="map" defaultValue={contactUs?.map}></textarea>
           </div>
 
           <div>
@@ -143,8 +111,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="facebookLink"
-              value={facebookLink}
-              onChange={(e) => setFacebookLink(e.target.value)}
+              defaultValue={contactUs?.facebookLink}
             />
           </div>
           <div>
@@ -152,8 +119,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="twitterLink"
-              value={twitterLink}
-              onChange={(e) => setTwitterLink(e.target.value)}
+              defaultValue={contactUs?.twitterLink}
             />
           </div>
 
@@ -162,8 +128,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="linkedinLink"
-              value={linkedinLink}
-              onChange={(e) => setLinkedinLink(e.target.value)}
+              defaultValue={contactUs?.linkedinLink}
             />
           </div>
 
@@ -172,8 +137,7 @@ export default function ContactUs() {
             <input
               type="text"
               name="youtubeLink"
-              value={youtubeLink}
-              onChange={(e) => setYoutubeLink(e.target.value)}
+              defaultValue={contactUs?.youtubeLink}
             />
           </div>
         </div>

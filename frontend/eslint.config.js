@@ -33,13 +33,8 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+
       "react/prop-types": "off",
-    },
-    env: {
-      browser: true,
-      es6: true,
-      node: true,
-      commonjs: true,
     },
   },
 ];

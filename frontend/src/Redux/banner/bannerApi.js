@@ -2,9 +2,16 @@ import { apiSlice } from "../api/apiSlice";
 
 export const bannerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getBanner: builder.query({
+    getAllBanner: builder.query({
       query: () => ({
-        url: "/banner",
+        url: "/banner/all",
+      }),
+      providesTags: ["banner"],
+    }),
+
+    getSingleBanner: builder.query({
+      query: (id) => ({
+        url: `/banner/${id}`,
       }),
       providesTags: ["banner"],
     }),
@@ -26,11 +33,21 @@ export const bannerApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["banner"],
     }),
+
+    deleteBanner: builder.mutation({
+      query: (id) => ({
+        url: `/banner/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["banner"],
+    }),
   }),
 });
 
 export const {
-  useGetBannerQuery,
+  useGetAllBannerQuery,
+  useGetSingleBannerQuery,
   useAddBannerMutation,
   useUpdateBannerMutation,
+  useDeleteBannerMutation,
 } = bannerApi;

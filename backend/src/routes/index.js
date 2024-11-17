@@ -18,9 +18,12 @@ const businessInfo = require("./businessInfoRoutes");
 const seo = require("./seoRoutes");
 const projects = require("./projectRoute");
 const privacy = require("./privacyRoute");
-const director = require("./directorRoute");
+const service = require("./serviceRoute");
 const contactMsg = require("./contactMsgRoute");
 const user = require("./userRoutes");
+const client = require("./clientRoutes");
+const counter = require("./counterRoute");
+const faq = require("./faqRoute");
 
 //------------------------------------------------------------------------------
 // use Routes
@@ -33,14 +36,17 @@ router.use("/contact", contact);
 router.use("/highlightProject", highlightProject);
 router.use("/whychooseSection", whyChooseSection);
 router.use("/whychoose", whychoose);
-router.use("/gallery", gallery);
 router.use("/featureProject", featureProject);
 router.use("/businessInfo", businessInfo);
 router.use("/seo", seo);
 router.use("/projects", projects);
 router.use("/privacy", privacy);
-router.use("/director", director);
+router.use("/service", service);
+router.use("/gallery", gallery);
 router.use("/contactMsg", contactMsg);
 router.use("/user", user);
+router.use("/client", client);
+router.use("/counter", counter);
+router.use("/faq", faq);
 
 module.exports = router;

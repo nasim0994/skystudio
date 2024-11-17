@@ -9,10 +9,6 @@ const AboutSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subTitle: {
-    type: String,
-    required: true,
-  },
   image: {
     type: String,
     required: true,

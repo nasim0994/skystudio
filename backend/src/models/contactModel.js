@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 
 const ContactSchema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+    },
     email: {
       type: String,
       required: true,
@@ -10,29 +17,15 @@ const ContactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    hotNumber: {
-      type: String,
-      required: true,
-    },
     address: {
       type: String,
       required: true,
     },
-    wpLink: {
-      type: String,
-      required: true,
-    },
-    facebookLink: {
+    map: {
       type: String,
     },
-    twitterLink: {
-      type: String,
-    },
-    linkedinLink: {
-      type: String,
-    },
-    youtubeLink: {
-      type: String,
+    social: {
+      type: Array,
     },
   },
   { timestamps: false }

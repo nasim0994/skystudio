@@ -1,20 +1,20 @@
+import { FaUsers } from "react-icons/fa";
+import { FaPager } from "react-icons/fa";
+import { ImSortNumbericDesc } from "react-icons/im";
+import { AiOutlineProject } from "react-icons/ai";
+import { MdDesignServices } from "react-icons/md";
 import { Link } from "react-router-dom";
-
 import {
   MdMonitor,
   MdOutlineDashboard,
   MdContactPhone,
-  MdHighlight,
-  MdFeaturedPlayList,
   MdOutlinePrivacyTip,
 } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
-import { RiAdminFill, RiBarChartHorizontalFill } from "react-icons/ri";
+import { RiAdminFill } from "react-icons/ri";
 import { FaChartLine } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
-import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import { CiMail } from "react-icons/ci";
-import { CgProfile } from "react-icons/cg";
 
 import SidebarItems from "./SidebarItems";
 import { useGetLogosQuery } from "../../../Redux/logo/logoApi";
@@ -27,63 +27,83 @@ const adminSidebarItems = [
   },
 
   {
-    icon: <HiOutlineBuildingLibrary />,
-    title: "Projects",
-    path: "/admin/project/all",
+    icon: <MdDesignServices />,
+    title: "Service",
+    subMenu: [
+      {
+        title: "Services",
+        path: "/admin/service/all",
+      },
+      {
+        title: "Gallery",
+        path: "/admin/service/gallery/all",
+      },
+    ],
+  },
+  {
+    icon: <AiOutlineProject />,
+    title: "Project",
+    subMenu: [
+      {
+        title: "Feature Projects",
+        path: "/admin/feature-project/all",
+      },
+      {
+        title: "Highlight Project",
+        path: "/admin/highlight-project",
+      },
+    ],
   },
 
   {
-    icon: <MdHighlight />,
-    title: "Highlight Project",
-    path: "/admin/highlightProject",
+    icon: <ImSortNumbericDesc />,
+    title: "Counter",
+    path: "/admin/counter",
+  },
+
+  {
+    icon: <FaUsers />,
+    title: "Clients",
+    path: "/admin/client/all",
+  },
+
+  {
+    icon: <FaPager />,
+    title: "Pages",
+    subMenu: [
+      {
+        icon: <FcAbout />,
+        title: "About Us",
+        path: "/admin/about-us",
+      },
+      {
+        icon: <MdContactPhone />,
+        title: "Contact Us",
+        path: "/admin/contact-us",
+      },
+      {
+        icon: <MdContactPhone />,
+        title: "FAQ",
+        path: "/admin/faq/all",
+      },
+      {
+        icon: <MdOutlinePrivacyTip />,
+        title: "Privacy Policy",
+        path: "/admin/privacy-policy",
+      },
+    ],
+  },
+
+  {
+    icon: <CiMail />,
+    title: "Client Message",
+    path: "/admin/contact-msg",
   },
 
   {
     icon: <RiAdminFill />,
     title: "Administrator",
     path: "/admin/administrator/all",
-  },
-  {
-    icon: <MdFeaturedPlayList />,
-    title: "Features Projects",
-    path: "/admin/featuresProject/all",
-  },
-  {
-    icon: <CgProfile />,
-    title: "Directors",
-    path: "/admin/director/all",
-  },
-
-  {
-    icon: <RiBarChartHorizontalFill />,
-    title: "Why Choose Us",
-    subMenu: [
-      {
-        title: "Why Choose Us Section",
-        path: "/admin/whyChoose/section",
-      },
-      {
-        title: "Why Choose Us Cards",
-        path: "/admin/whyChoose/cards/all",
-      },
-    ],
-  },
-
-  {
-    icon: <FcAbout />,
-    title: "About Us",
-    path: "/admin/about-us",
-  },
-
-  {
-    icon: <MdContactPhone />,
-    title: "Contact Us",
-    path: "/admin/contact-us",
-  },
-  {
-    icon: <CiMail />,
-    title: "Client Message",
-    path: "/admin/contact-msg",
   },
 
   {
@@ -100,11 +120,7 @@ const adminSidebarItems = [
       },
       {
         title: "Banner",
-        path: "/admin/front-end/banner",
-      },
-      {
-        title: "Gallery",
-        path: "/admin/front-end/gallery",
+        path: "/admin/front-end/banner/all",
       },
     ],
   },
@@ -125,11 +141,6 @@ const adminSidebarItems = [
     title: "SEO Setting",
     path: "/admin/seo",
   },
-  {
-    icon: <MdOutlinePrivacyTip />,
-    title: "Privacy Policy",
-    path: "/admin/privacy-policy",
-  },
 ];
 
 export default function AdminSidebar() {
@@ -141,7 +152,11 @@ export default function AdminSidebar() {
       <div>
         <nav className="admin_siderbar">
           <Link to="/admin/dashboard" className="block py-3">
-            <img className="mx-auto w-3/5"  src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`} alt="Logo" />
+            <img
+              className="mx-auto w-3/5"
+              src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`}
+              alt="Logo"
+            />
           </Link>
 
           <ul>

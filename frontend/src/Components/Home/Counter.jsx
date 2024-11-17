@@ -1,38 +1,18 @@
 import { useState } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
+import { useGetCounterQuery } from "../../Redux/counter/counterApi";
 
 export default function Counter() {
   const [count, setCount] = useState(false);
-
-  const counter = [
-    {
-      title: "Our Achievements",
-      number: 1000,
-    },
-    {
-      title: "Happy Clients",
-      number: 500,
-    },
-    {
-      title: "Projects Done",
-      number: 300,
-    },
-    {
-      title: "Awards Won",
-      number: 100,
-    },
-    {
-      title: "Years of Experience",
-      number: 10,
-    },
-  ];
+  const { data } = useGetCounterQuery();
+  const counter = data?.data;
 
   return (
     <section
       className="py-10 text-base-100 sm:py-20"
       style={{
-        backgroundImage: `linear-gradient(80deg, #0000009a, #0000009a),url("/slider.jpg")`,
+        backgroundImage: `linear-gradient(80deg, #0000009a, #0000009a),url(${import.meta.env.VITE_BACKEND_URL}/${counter?.bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -45,7 +25,7 @@ export default function Counter() {
           </h2>
 
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
-            {counter?.map((item, i) => (
+            {counter?.counts?.map((item, i) => (
               <div
                 key={i}
                 className="flex flex-col items-center gap-1 text-center"

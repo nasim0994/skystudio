@@ -1,9 +1,5 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
-} from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
+import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { MdOutlineClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useGetContactsQuery } from "../../Redux/contact/contactApi";
@@ -66,7 +62,7 @@ export default function SidebarMenu({ showSidebar, setShowSidebar }) {
           to={contact?.twitterLink}
           className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
         >
-          <FaInstagram />
+          <BsTwitter />
         </Link>
         <Link
           to={contact?.youtubeLink}

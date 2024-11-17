@@ -15,11 +15,11 @@ export default function About() {
   const [image, setImage] = useState([]);
   const [heading, setHeading] = useState("");
   const [title, setTitle] = useState("");
-  const [subTitle, setSubTitle] = useState("");
   const [description, setDescription] = useState("");
   const [profile, setProfile] = useState("");
 
-  const { data: aboutData, isLoading: isAboutLoading } = useGetAboutUsQuery();
+  const { data, isLoading: isAboutLoading } = useGetAboutUsQuery();
+  const id = data?.data?._id;
 
   const [createAboutUs, { isLoading: isCreateLoading }] =
     useCreateAboutUsMutation();
@@ -27,19 +27,17 @@ export default function About() {
     useUpdateAboutUsMutation();
 
   useEffect(() => {
-    if (aboutData && aboutData.data) {
-      const aboutUs = aboutData.data;
-      setHeading(aboutUs.heading);
-      setTitle(aboutUs.title);
-      setSubTitle(aboutUs.subTitle);
-      setDescription(aboutUs.description);
+    if (data && data?.data) {
+      setHeading(data?.data?.heading);
+      setTitle(data?.data?.title);
+      setDescription(data?.data?.description);
       setImage([
-        { data_url: `${import.meta.env.VITE_BACKEND_URL}${aboutUs.image}` },
+        { data_url: `${import.meta.env.VITE_BACKEND_URL}${data?.data?.image}` },
       ]);
     }
-  }, [aboutData]);
+  }, [data]);
 
-  const handleAddEdit = async (e) => {
+  const handleAbout = async (e) => {
     e.preventDefault();
 
     const img = image[0]?.file;
@@ -47,29 +45,28 @@ export default function About() {
     const formData = new FormData();
     formData.append("heading", heading);
     formData.append("title", title);
-    formData.append("subTitle", subTitle);
     formData.append("description", description);
 
     if (img) formData.append("image", img);
     if (profile) formData.append("profileDoc", profile);
 
     try {
-      let result;
-      if (aboutData?.data?._id) {
-        result = await updateAboutUs({
-          id: aboutData.data._id,
-          formData,
-        });
+      if (id) {
+        const res = await updateAboutUs({ id, formData });
+        if (res?.data?.success) {
+          Swal.fire("", "Updated successfully", "success");
+        } else {
+          Swal.fire("", res?.data?.message || "Operation failed", "error");
+          console.log(res);
+        }
       } else {
-        result = await createAboutUs(formData);
-      }
-
-      if (result.data?.success) {
-        setImage([]);
-        Swal.fire("", "About Us saved successfully", "success");
-      } else {
-        Swal.fire("", result.data?.message || "Operation failed", "error");
-        console.log(result);
+        const res = await createAboutUs(formData);
+        if (res?.data?.success) {
+          Swal.fire("", "Created successfully", "success");
+        } else {
+          Swal.fire("", res?.data?.message || "Operation failed", "error");
+          console.log(res);
+        }
       }
     } catch (error) {
       Swal.fire("", error?.data?.message || "Operation failed", "error");
@@ -85,7 +82,7 @@ export default function About() {
         <h3 className="font-medium text-neutral">About Info</h3>
       </div>
 
-      <form onSubmit={handleAddEdit} className="p-4">
+      <form onSubmit={handleAbout} className="p-4">
         <div className="grid items-start gap-4 text-neutral-content sm:grid-cols-2 md:grid-cols-3">
           <div className="flex flex-col gap-3">
             <div>
@@ -106,16 +103,6 @@ export default function About() {
                 className="border"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div>
-              <p className="mb-1">Sub Title</p>
-              <input
-                type="text"
-                name="subTitle"
-                className="border"
-                value={subTitle}
-                onChange={(e) => setSubTitle(e.target.value)}
               />
             </div>
 
@@ -178,7 +165,7 @@ export default function About() {
                 accept="application/pdf"
                 onChange={(e) => setProfile(e.target.files[0])}
               />
-              {aboutData?.data?.profileDoc && aboutData?.data?.profileDoc}
+              {data?.data?.profileDoc && data?.data?.profileDoc}
             </div>
           </div>
 

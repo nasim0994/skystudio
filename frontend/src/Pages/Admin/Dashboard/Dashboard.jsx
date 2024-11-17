@@ -7,7 +7,6 @@ import { IoMail } from "react-icons/io5";
 import { useGetProjectsQuery } from "../../../Redux/projects/projectsApi";
 import { useGetFeatureProjectsQuery } from "../../../Redux/featureProject/featureProjectApi";
 import { useGetAllContactMsgsQuery } from "../../../Redux/contactMsg/contactMsgApi";
-import { useGetDirectorQuery } from "../../../Redux/director/directorApi";
 import ContactMsgList from "../ContactMsg/ContactMsgList";
 
 export default function Dashboard() {
@@ -21,11 +20,6 @@ export default function Dashboard() {
 
   const { data: clientMsg } = useGetAllContactMsgsQuery();
   const clientMessages = clientMsg?.data;
-
-  const { data: directors } = useGetDirectorQuery();
-  const director = directors?.data;
-
-  console.log(director?.length);
 
   if (userLoading) {
     return <Spinner />;

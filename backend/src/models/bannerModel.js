@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const BannerSchema = new mongoose.Schema(
   {
-    video: {
+    title: {
+      type: String,
+      required: true,
+    },
+    bg: {
       type: String,
       required: true,
     },

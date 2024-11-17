@@ -8,7 +8,7 @@ exports.createAboutUs = async (req, res) => {
     : null;
 
   let aboutUs = {
-    ...data,
+    ...req?.body,
     image: `/aboutus/${image}`,
   };
 
@@ -94,33 +94,24 @@ exports.updateAboutUs = async (req, res) => {
     const isExist = await AboutUs.findById(id);
 
     if (!isExist) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: "About Us not found",
       });
     }
 
-    let newData;
-
-    if (image) {
-      newData = {
-        ...data,
-        image: `/aboutus/${image}`,
-      };
-    }
-    if (profileDoc) {
-      newData = {
-        ...data,
-        profileDoc: `/aboutus/${profileDoc}`,
-      };
-    }
+    let newData = {
+      ...data,
+      image: image ? `/aboutus/${image}` : isExist?.image,
+      profileDoc: profileDoc ? `/aboutus/${profileDoc}` : isExist?.profileDoc,
+    };
 
     const result = await AboutUs.findByIdAndUpdate(id, newData, {
       new: true,
     });
 
     if (!result) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: "About Us not updated",
       });

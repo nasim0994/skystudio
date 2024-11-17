@@ -11,6 +11,8 @@ export default function Gallery() {
   const { data } = useGetGalleryQuery();
   const gallery = data?.data;
 
+  const allImages = gallery?.map((item) => item.images).flat();
+
   return (
     <section className="gallery_wrap py-10 sm:py-14">
       <h2 className="mb-8 text-center text-4xl font-semibold text-neutral sm:text-5xl">
@@ -19,7 +21,6 @@ export default function Gallery() {
 
       <PhotoProvider>
         <Swiper
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
           effect={"coverflow"}
           slidesPerView={1}
           spaceBetween={10}
@@ -42,16 +43,17 @@ export default function Gallery() {
             slideShadows: true,
           }}
           modules={[EffectCoverflow, Autoplay]}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           className="h-[270px] w-full sm:h-[450px]"
         >
-          {gallery?.map((gallery) => (
-            <SwiperSlide className="h-full">
+          {allImages?.map((image, i) => (
+            <SwiperSlide key={i} className="h-full">
               <PhotoView
-                key={gallery?._id}
-                src={`${import.meta.env.VITE_BACKEND_URL}/gallery/${gallery?.image}`}
+                key={image?._id}
+                src={`${import.meta.env.VITE_BACKEND_URL}/${image}`}
               >
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/gallery/${gallery?.image}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${image}`}
                   alt="gallery"
                   className="block h-full w-full rounded object-cover"
                 />

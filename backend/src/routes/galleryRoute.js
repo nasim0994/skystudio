@@ -6,6 +6,10 @@ const {
   get,
   getSingle,
   destroy,
+  getAll,
+  update,
+  getByServiceId,
+  getGroupService,
 } = require("../controllers/galleryController");
 
 const storage = multer.diskStorage({
@@ -17,11 +21,14 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+// multiple images
+const upload = multer({ storage: storage }).array("image");
 
-router.get("/", get);
+router.post("/add", upload, add);
+router.get("/", getAll);
 router.get("/:id", getSingle);
-router.post("/add", upload.single("image"), add);
+router.get("/byservice/:id", getByServiceId);
+router.patch("/update/:id", upload, update);
 router.delete("/delete/:id", destroy);
 
 module.exports = router;

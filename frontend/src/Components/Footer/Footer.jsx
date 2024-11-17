@@ -1,9 +1,5 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
-} from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
+import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineLocationOn, MdOutlineMail } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -31,7 +27,7 @@ export default function Footer() {
             <img
               src={import.meta.env.VITE_BACKEND_URL + logo?.logo}
               alt="logo"
-              className="w-60"
+              className="w-40"
               loading="lazy"
             />
             <p className="mt-3 text-sm text-gray-300">
@@ -60,6 +56,11 @@ export default function Footer() {
               <li>
                 <Link to={`/contact-us`} className="hover:underline">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link to={`/privacy-policy`} className="hover:underline">
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -96,7 +97,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-neutral-content py-4">
           <div className="flex items-center justify-between text-sm text-neutral-content">
             <p>
-              All Rights Reserved @Astral Interior. Develop by{" "}
+              All Rights Reserved @archi Interior. Develop by{" "}
               <Link
                 to="https://www.emanagerit.com"
                 target="_blank"
@@ -124,7 +125,7 @@ export default function Footer() {
                 to={contact?.twitterLink}
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
               >
-                <FaInstagram />
+                <BsTwitter />
               </Link>
               <Link
                 to={contact?.youtubeLink}

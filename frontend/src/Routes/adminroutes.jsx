@@ -3,7 +3,52 @@ import AdminLayout from "../Layout/AdminLayout";
 import Spinner from "../Components/Spinner/Spinner";
 
 // Lazy loading the components
+const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
+
+//---------------service
+const AllServices = lazy(
+  () => import("../Pages/Admin/Service/Services/AllServices"),
+);
+const AddService = lazy(
+  () => import("../Pages/Admin/Service/Services/AddService"),
+);
+const EditService = lazy(
+  () => import("../Pages/Admin/Service/Services/EditService"),
+);
+
+const Gallery = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Gallery/Gallery"),
+);
+const AddGallery = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Gallery/AddGallery"),
+);
+const EditGallery = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Gallery/EditGallery"),
+);
+
+const Counter = lazy(() => import("../Pages/Admin/Counter/Counter"));
+
+//---------------project
+const FeaturesProjectList = lazy(
+  () => import("../Pages/Admin/Project/FeaturesProject/FeaturesProjectList"),
+);
+const AddFeaturesProject = lazy(
+  () => import("../Pages/Admin/Project/FeaturesProject/AddFeaturesProject"),
+);
+const EditFeaturesProject = lazy(
+  () => import("../Pages/Admin/Project/FeaturesProject/EditFeaturesProject"),
+);
+const HighlightProject = lazy(
+  () => import("../Pages/Admin/Project/HighlightProject/HighlightProject"),
+);
+
+//------------pages
 const About = lazy(() => import("../Pages/Admin/AboutUs/AboutUs"));
+const ContactUs = lazy(() => import("../Pages/Admin/ContactUs/ContactUs"));
+const PrivacyPolicy = lazy(
+  () => import("../Pages/Admin/PrivacyPolicy/PrivacyPolicy"),
+);
+
 const AddAdministrator = lazy(
   () => import("../Pages/Admin/Administrator/AddAdministrator"),
 );
@@ -11,39 +56,11 @@ const Administrator = lazy(
   () => import("../Pages/Admin/Administrator/Administrator"),
 );
 const Dashboard = lazy(() => import("../Pages/Admin/Dashboard/Dashboard"));
-const Banner = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Banner/Banner"),
-);
-const AddProject = lazy(() => import("../Pages/Admin/Projects/AddProject"));
-const EditProject = lazy(() => import("../Pages/Admin/Projects/EditProject"));
-const ProjectList = lazy(() => import("../Pages/Admin/Projects/ProjectList"));
-const ContactUs = lazy(() => import("../Pages/Admin/ContactUs/ContactUs"));
-const HighlightProject = lazy(
-  () => import("../Pages/Admin/HighlightProject/HighlightProject"),
-);
-const Favicon = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Favicon/Favicon"),
-);
-const Logo = lazy(() => import("../Pages/Admin/FrontEndSetting/Logo/Logo"));
-const Gallery = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Gallery/Gallery"),
-);
+
 const BusinessInfo = lazy(
   () => import("../Pages/Admin/GeneralSetting/BusinessInfo/BusinessInfo"),
 );
-const SEO = lazy(() => import("../Pages/Admin/SEO/SEO"));
-const FeaturesProjectList = lazy(
-  () => import("../Pages/Admin/FeaturesProject/FeaturesProjectList"),
-);
-const AddFeaturesProject = lazy(
-  () => import("../Pages/Admin/FeaturesProject/AddFeaturesProject"),
-);
-const EditFeaturesProject = lazy(
-  () => import("../Pages/Admin/FeaturesProject/EditFeaturesProject"),
-);
-const PrivacyPolicy = lazy(
-  () => import("../Pages/Admin/PrivacyPolicy/PrivacyPolicy"),
-);
+
 const WhyChooseSection = lazy(
   () => import("../Pages/Admin/WhyChoose/WhyChooseSection"),
 );
@@ -53,19 +70,36 @@ const WhyChooseCards = lazy(
 const AddWhyChooseCard = lazy(
   () => import("../Pages/Admin/WhyChoose/AddWhyChooseCard"),
 );
-const AddGallery = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Gallery/AddGallery"),
-);
-const DirectorList = lazy(() => import("../Pages/Admin/Director/DirectorList"));
-const AddDirector = lazy(() => import("../Pages/Admin/Director/AddDirector"));
-const EditDirector = lazy(() => import("../Pages/Admin/Director/EditDirector"));
+
 const ContactMsgList = lazy(
   () => import("../Pages/Admin/ContactMsg/ContactMsgList"),
 );
 const ContactMsgDetail = lazy(
   () => import("../Pages/Admin/ContactMsg/ContactMsgDetail"),
 );
-const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
+
+//----------Frontend
+const Favicon = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Favicon/Favicon"),
+);
+const Logo = lazy(() => import("../Pages/Admin/FrontEndSetting/Logo/Logo"));
+
+const AllBanner = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Banner/AllBanner"),
+);
+const AddBanner = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Banner/AddBanner"),
+);
+const EditBanner = lazy(
+  () => import("../Pages/Admin/FrontEndSetting/Banner/EditBanner"),
+);
+const FAQ = lazy(() => import("../Pages/Admin/Pages/FAQ/FAQ"));
+const AddFAQ = lazy(() => import("../Pages/Admin/Pages/FAQ/AddFAQ"));
+const EditFAQ = lazy(() => import("../Pages/Admin/Pages/FAQ/EditFAQ"));
+const AllClients = lazy(() => import("../Pages/Admin/Clients/AllClients"));
+const AddClient = lazy(() => import("../Pages/Admin/Clients/AddClient"));
+
+const SEO = lazy(() => import("../Pages/Admin/SEO/SEO"));
 
 export const adminRoutes = {
   path: "/admin",
@@ -81,46 +115,96 @@ export const adminRoutes = {
       path: "dashboard",
       element: <Dashboard />,
     },
+
+    //-------------service routes
     {
-      path: "project/all",
-      element: <ProjectList />,
+      path: "service/all",
+      element: <AllServices />,
     },
     {
-      path: "project/add",
-      element: <AddProject />,
+      path: "service/add",
+      element: <AddService />,
     },
     {
-      path: "project/edit/:id",
-      element: <EditProject />,
+      path: "service/edit/:id",
+      element: <EditService />,
+    },
+
+    {
+      path: "service/gallery/ALL",
+      element: <Gallery />,
     },
     {
-      path: "featuresProject/all",
+      path: "service/gallery/add",
+      element: <AddGallery />,
+    },
+    {
+      path: "service/gallery/edit/:id",
+      element: <EditGallery />,
+    },
+
+    //-------------project routes
+    {
+      path: "feature-project/all",
       element: <FeaturesProjectList />,
     },
     {
-      path: "featuresProject/add",
+      path: "feature-project/add",
       element: <AddFeaturesProject />,
     },
     {
-      path: "featuresProject/edit/:id",
+      path: "feature-project/edit/:id",
       element: <EditFeaturesProject />,
     },
     {
-      path: "director/all",
-      element: <DirectorList />,
+      path: "highlight-project",
+      element: <HighlightProject />,
+    },
+
+    //----counter routes
+    {
+      path: "counter",
+      element: <Counter />,
+    },
+
+    //----Client routes
+    {
+      path: "client/all",
+      element: <AllClients />,
     },
     {
-      path: "director/add",
-      element: <AddDirector />,
+      path: "client/add",
+      element: <AddClient />,
+    },
+
+    //--------pages
+    {
+      path: "faq/all",
+      element: <FAQ />,
     },
     {
-      path: "director/edit/:id",
-      element: <EditDirector />,
+      path: "faq/add",
+      element: <AddFAQ />,
     },
     {
-      path: "front-end/banner",
-      element: <Banner />,
+      path: "faq/edit/:id",
+      element: <EditFAQ />,
     },
+
+    // ----front-end
+    {
+      path: "front-end/banner/all",
+      element: <AllBanner />,
+    },
+    {
+      path: "front-end/banner/add",
+      element: <AddBanner />,
+    },
+    {
+      path: "front-end/banner/edit/:id",
+      element: <EditBanner />,
+    },
+
     {
       path: "front-end/favicon",
       element: <Favicon />,
@@ -129,14 +213,7 @@ export const adminRoutes = {
       path: "front-end/logo",
       element: <Logo />,
     },
-    {
-      path: "front-end/gallery",
-      element: <Gallery />,
-    },
-    {
-      path: "front-end/gallery/add",
-      element: <AddGallery />,
-    },
+
     {
       path: "general-setting/business-info",
       element: <BusinessInfo />,
@@ -161,10 +238,7 @@ export const adminRoutes = {
       path: "about-us",
       element: <About />,
     },
-    {
-      path: "highlightProject",
-      element: <HighlightProject />,
-    },
+
     {
       path: "contact-us",
       element: <ContactUs />,

@@ -1,15 +1,8 @@
+import { useGetAllClientQuery } from "../../Redux/client/clientApi";
+
 export default function ClientSlider() {
-  const images = [
-    { url: "/clients/acnabin.png" },
-    { url: "/clients/aps-e1701801217188.png" },
-    { url: "/clients/best-electronics.png" },
-    { url: "/clients/cotton-villa.png" },
-    { url: "/clients/eternal-green.png" },
-    { url: "/clients/evergreen.png" },
-    { url: "/clients/sb-group.png" },
-    { url: "/clients/x-index.png" },
-    { url: "/clients/zaman.png" },
-  ];
+  const { data } = useGetAllClientQuery();
+  const clients = data?.data;
 
   return (
     <section className="bg-stone-100 py-10">
@@ -17,17 +10,23 @@ export default function ClientSlider() {
         Featured Clients
       </h2>
       <div className="container">
-        <div class="wrapper">
-          {images.map((img, index) => (
+        <div className="wrapper">
+          {clients?.map((client, index) => (
             <div key={index} className={`itemLeft item${index + 1}`}>
-              <img src={img?.url} alt="" />
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${client?.logo}`}
+                alt="client"
+              />
             </div>
           ))}
         </div>
-        <div class="wrapper">
-          {images.map((img, index) => (
+        <div className="wrapper">
+          {clients?.map((client, index) => (
             <div key={index} className={`itemRight item${index + 1}`}>
-              <img src={img?.url} alt="" />
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${client?.logo}`}
+                alt="client"
+              />
             </div>
           ))}
         </div>

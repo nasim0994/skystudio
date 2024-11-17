@@ -7,7 +7,7 @@ export const contactMsgApi = apiSlice.injectEndpoints({
         url: "/contactMsg",
         method: "GET",
       }),
-      providesTags: ["ContactMsgs"],
+      providesTags: ["contactMsgs"],
     }),
 
     getContactMsgById: builder.query({
@@ -15,24 +15,24 @@ export const contactMsgApi = apiSlice.injectEndpoints({
         url: `/contactMsg/${id}`,
         method: "GET",
       }),
-      providesTags: (result, error, id) => [{ type: "ContactMsgs", id }],
+      providesTags: ["contactMsgs"],
     }),
 
     addContactMsg: builder.mutation({
-        query: (newMessage) => ({
-          url: "/contactMsg/add",
-          method: "POST",
-          body: newMessage,
-        }),
-        invalidatesTags: ["contactMessages"],
+      query: (newMessage) => ({
+        url: "/contactMsg/add",
+        method: "POST",
+        body: newMessage,
       }),
+      invalidatesTags: ["contactMsgs"],
+    }),
 
     deleteContactMsg: builder.mutation({
       query: (id) => ({
         url: `/contactMsg/delete/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, id) => [{ type: "ContactMsgs", id }],
+      invalidatesTags: ["contactMsgs"],
     }),
   }),
 });

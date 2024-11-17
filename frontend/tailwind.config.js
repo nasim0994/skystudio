@@ -8,7 +8,7 @@ module.exports = {
       "light",
       {
         light: {
-          primary: "#178d85",
+          primary: "#d6b33f",
           secondary: "#11716A",
           neutral: "#444",
           "neutral-content": "#757872",
