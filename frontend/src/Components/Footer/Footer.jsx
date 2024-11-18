@@ -97,7 +97,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-neutral-content py-4">
           <div className="flex items-center justify-between text-sm text-neutral-content">
             <p>
-              All Rights Reserved @archi Interior. Develop by{" "}
+              All Rights Reserved @Astral Interior. Develop by{" "}
               <Link
                 to="https://www.emanagerit.com"
                 target="_blank"

@@ -42,7 +42,7 @@ export default function AddFeaturesProject() {
         e.target.reset();
         setImage([]);
         setDescription("");
-        navigate("/admin/featuresProject/all");
+        navigate("/admin/feature-project/all");
       } else {
         Swal.fire("", "Something went wrong!", "error");
       }

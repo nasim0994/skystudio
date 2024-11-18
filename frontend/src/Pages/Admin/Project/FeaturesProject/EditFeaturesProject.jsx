@@ -56,7 +56,7 @@ export default function EditFeaturesProject() {
 
       if (res?.success) {
         Swal.fire("", "Project updated successfully", "success");
-        navigate("/admin/featuresProject/all");
+        navigate("/admin/feature-project/all");
       } else {
         Swal.fire("", "Something went wrong!", "error");
       }

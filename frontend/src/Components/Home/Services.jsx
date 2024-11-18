@@ -9,7 +9,7 @@ export default function Services() {
     <section className="py-10">
       <div className="container">
         <h2 className="mx-auto text-center text-3xl font-semibold sm:w-2/3 sm:text-5xl">
-          Services of Archi Home
+          Services of Astral Home
         </h2>
 
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

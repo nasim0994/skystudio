@@ -26,6 +26,7 @@ export default function Home() {
       <Services />
       <ProjectHighlight />
       <Contact />
+      <LandDesign />
       <Gallery />
       <ClientSlider />
       <Counter />
