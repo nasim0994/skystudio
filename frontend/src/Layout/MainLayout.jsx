@@ -6,7 +6,9 @@ export default function MainLayout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className="bg-[#FFFAF4]">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Contact() {
   return (
-    <section className="py-10">
+    <section className="bg-gray-50 py-10">
       <div className="container">
         <div className="items-center justify-between sm:flex">
           <h2 className="text-4xl font-medium text-neutral sm:text-5xl">

@@ -7,6 +7,8 @@ import {
 } from "../../../Redux/whychooseSection/whychooseSectionApi";
 
 export default function WhyChooseSection() {
+  const [title, setTitle] = useState("");
+
   const { data, isLoading: isFetching } = useGetWhychooseSectionQuery();
   const section = data?.data;
 
@@ -14,8 +16,6 @@ export default function WhyChooseSection() {
     useAddWhychooseSectionMutation();
   const [updateWhychooseSection, { isLoading: isUpdating }] =
     useUpdateWhychooseSectionMutation();
-
-  const [title, setTitle] = useState("");
 
   useEffect(() => {
     if (section) {

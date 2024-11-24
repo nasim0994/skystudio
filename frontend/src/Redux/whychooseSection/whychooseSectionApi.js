@@ -10,7 +10,7 @@ export const whychooseSectionApi = apiSlice.injectEndpoints({
     }),
     updateWhychooseSection: builder.mutation({
       query: ({ id, info }) => ({
-        url: `/whychooseSection/update-whychooseSection/${id}`,
+        url: `/whychooseSection/update/${id}`,
         method: "PATCH",
         body: info,
       }),
@@ -18,7 +18,7 @@ export const whychooseSectionApi = apiSlice.injectEndpoints({
     }),
     addWhychooseSection: builder.mutation({
       query: (info) => ({
-        url: `/whychooseSection/add-whychooseSection`,
+        url: `/whychooseSection/add`,
         method: "POST",
         body: info,
       }),

@@ -11,7 +11,7 @@ import {
   MdOutlinePrivacyTip,
 } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill, RiBarChartHorizontalFill } from "react-icons/ri";
 import { FaChartLine } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
@@ -51,6 +51,21 @@ const adminSidebarItems = [
       {
         title: "Highlight Project",
         path: "/admin/highlight-project",
+      },
+    ],
+  },
+
+  {
+    icon: <RiBarChartHorizontalFill />,
+    title: "Why Choose Us",
+    subMenu: [
+      {
+        title: "Why Choose Us Section",
+        path: "/admin/whyChoose/section",
+      },
+      {
+        title: "Why Choose Us Cards",
+        path: "/admin/whyChoose/cards/all",
       },
     ],
   },

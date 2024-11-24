@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import MainLayout from "../Layout/MainLayout";
 import Spinner from "../Components/Spinner/Spinner";
 import Home from "../Pages/Main/Home/Home";
+import Reviews from "../Pages/Main/Reviews";
 
 // Lazy loading the components
 const FAQPage = lazy(() => import("../Pages/Main/FAQPage"));
@@ -65,6 +66,14 @@ export const mainRoutes = {
       element: (
         <Suspense fallback={<Spinner />}>
           <PrivacyPolicy />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/reviews",
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <Reviews />
         </Suspense>
       ),
     },

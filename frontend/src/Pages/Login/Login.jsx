@@ -32,13 +32,11 @@ export default function Login() {
 
     const res = await login(loginInfo);
 
-    if (res?.error) {
-      return setError(res?.error?.data?.error);
-    }
-
     if (res?.data?.success) {
       Swal.fire("", "Login Success", "success");
       form.reset();
+    } else {
+      setError(res?.data?.message || "Invalid username or password");
     }
   };
 

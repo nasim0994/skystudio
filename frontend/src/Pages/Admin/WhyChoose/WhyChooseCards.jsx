@@ -16,20 +16,16 @@ export default function WhyChooseCards() {
     const isConfirm = window.confirm("Are you sure delete this Whychoose?");
     if (isConfirm) {
       try {
-        const res = await deleteWhychoose(id).unwrap();
-        if (res?.success) {
-          Swal.fire({
-            title: "",
-            text: "Whychoose Deleted Successfully",
-            icon: "success",
-          });
+        const res = await deleteWhychoose(id);
+        if (res?.data?.success) {
+          Swal.fire("", "Whychoose Deleted Successfully", "success");
+        } else {
+          Swal.fire("", res?.data?.message || "Something went wrong", "error");
+          console.log(res);
         }
       } catch (error) {
-        Swal.fire({
-          title: "",
-          text: "Something went wrong",
-          icon: "error",
-        });
+        Swal.fire("", "Something went wrong", "error");
+        console.log(error);
       }
     }
   };

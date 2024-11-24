@@ -6,7 +6,7 @@
 
 :root {
   --primary: #178d85;
-  --secondary: #178d85;
+  --secondary: #178d85d0;
 }
 
 body {
@@ -41,39 +41,9 @@ h2 {
   position: relative;
   overflow: hidden;
   border-radius: 19px;
-  font-size: 15px;
+  font-size: 14px;
   display: block;
   width: fit-content;
-}
-
-.primary_btn:hover {
-  color: #fff;
-  background: none;
-}
-
-.admin_btn {
-  @apply rounded border bg-primary px-4 py-2 text-white;
-}
-
-.primary_btn::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background: var(--primary);
-  color: #fff;
-  z-index: -1;
-  transition: 0.8s;
-}
-
-.primary_btn::before {
-  top: 0;
-  border-radius: 0 0 50% 50%;
-}
-
-.primary_btn:hover::before {
-  height: 180%;
 }
 
 .primary_outline_btn {
@@ -91,23 +61,8 @@ h2 {
   display: block;
 }
 
-.primary_outline_btn:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: var(--primary);
-  z-index: -1;
-  transition: 0.8s;
-}
-
-.primary_outline_btn:hover:after {
-  width: 100%;
-}
-.primary_outline_btn:hover {
-  color: #fff;
+.admin_btn {
+  @apply rounded border bg-primary px-4 py-2 text-white;
 }
 
 /* ---------------------------form------------------------- */
@@ -324,10 +279,6 @@ table tbody td {
   transition: all 0.5s ease;
 }
 
-.service_card:hover {
-  background: linear-gradient(to bottom, var(--secondary), var(--secondary));
-}
-
 .service_card h2 {
   margin-top: 16px;
   font-size: 28px;
@@ -350,4 +301,124 @@ table tbody td {
 
 .activeFAQ {
   max-height: 500px;
+}
+
+/* -------------------------process--------------------------- */
+.process_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 140px;
+}
+
+.process_card .process_icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #000;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.process_card:nth-child(odd) .process_icon {
+  border-color: #f46c24;
+}
+
+.process_card:nth-child(even) .process_icon {
+  border-color: #000;
+}
+
+.process_card .process_icon img {
+  width: 80%;
+  height: 80%;
+}
+
+.process_card p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.process_card:nth-child(odd) .process_icon::after {
+  content: "";
+  position: absolute;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 180px;
+  border-top: 1px solid #ffa500;
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.process_card:nth-child(even) .process_icon::before {
+  content: "";
+  position: absolute;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 180px;
+  border-bottom: 1px solid red;
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.process_card p {
+  position: absolute;
+  font-size: 12px;
+}
+
+.process_card:nth-child(odd) p {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.process_card:nth-child(even) p {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* responsive */
+@media only screen and (max-width: 640px) {
+  .process_card {
+    width: 100px;
+  }
+
+  .process_card:nth-child(odd) .process_icon::after {
+    border-left: 1px solid #ffa500;
+    border-top: 0;
+  }
+
+  .process_card:nth-child(even) .process_icon::after {
+    border-bottom: 0;
+  }
+
+  .process_card:nth-child(even) .process_icon::before {
+    border-right: 1px solid red;
+    border-bottom: 0;
+  }
+
+  .process_card:nth-child(even) p {
+    transform: translate(-120%);
+    top: 21%;
+    left: 0;
+  }
+
+  .process_card:nth-child(odd) p {
+    transform: translate(140%, 14%);
+    top: 0;
+  }
 }
