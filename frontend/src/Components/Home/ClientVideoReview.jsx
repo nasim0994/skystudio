@@ -25,7 +25,7 @@ export default function ClientVideoReview() {
 
             <div className="p-1 text-center">
               <p className="text-sm italic text-neutral-content">
-                Minimal has the expertise in space utilization and innovative
+                Astral has the expertise in space utilization and innovative
                 design, making them the ideal choice to interior our dream home.
               </p>
 
@@ -51,7 +51,7 @@ export default function ClientVideoReview() {
 
             <div className="p-1 text-center">
               <p className="text-sm italic text-neutral-content">
-                Minimal has the expertise in space utilization and innovative
+                Astral has the expertise in space utilization and innovative
                 design, making them the ideal choice to interior our dream home.
               </p>
 
@@ -77,7 +77,7 @@ export default function ClientVideoReview() {
 
             <div className="p-1 text-center">
               <p className="text-sm italic text-neutral-content">
-                Minimal has the expertise in space utilization and innovative
+                Astral has the expertise in space utilization and innovative
                 design, making them the ideal choice to interior our dream home.
               </p>
 
