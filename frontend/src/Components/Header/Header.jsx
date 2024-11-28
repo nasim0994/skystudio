@@ -1,6 +1,6 @@
 import "../../assets/css/header.css";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import SidebarMenu from "./SidebarMenu";
 import { useEffect, useState } from "react";
@@ -40,27 +40,40 @@ export default function Header() {
           </Link>
 
           <nav>
-            <ul className="flex items-center gap-6">
+            <ul className="hidden items-center gap-6 md:flex">
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/services">Services</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about-us">About US</NavLink>
+              </li>
+              <li>
+                <NavLink to="/faq">FAQ</NavLink>
+              </li>
+
               <li className="hidden sm:block">
                 <Link to="/contact-us" className="primary_btn">
-                  Book Now
+                  Contact Us
                 </Link>
               </li>
-
-              <li>
-                <button
-                  onClick={() => setShowSidebar(!showSidebar)}
-                  className="header_menu_btn"
-                >
-                  <RiMenu3Fill />
-                </button>
-
-                <SidebarMenu
-                  showSidebar={showSidebar}
-                  setShowSidebar={setShowSidebar}
-                />
-              </li>
             </ul>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setShowSidebar(!showSidebar)}
+                className="header_menu_btn"
+              >
+                <RiMenu3Fill />
+              </button>
+
+              <SidebarMenu
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+              />
+            </div>
           </nav>
         </div>
       </div>

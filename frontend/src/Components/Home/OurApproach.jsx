@@ -51,7 +51,7 @@ export default function OurApproach() {
             <TabPanel key={i}>
               <img
                 src={tab?.image}
-                className="mx-auto mt-10 sm:w-[600px]"
+                className="fade-up-animation mx-auto mt-10 sm:w-[600px]"
                 alt=""
               />
 

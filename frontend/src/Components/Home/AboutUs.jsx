@@ -84,7 +84,7 @@ export default function AboutUs() {
             </div>
 
             <div className="mt-4">
-              <Link className="primary_btn text-sm">Our Profile</Link>
+              <Link className="primary_btn text-sm">Astral Profile</Link>
             </div>
           </div>
         </div>

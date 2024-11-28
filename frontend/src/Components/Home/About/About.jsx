@@ -37,7 +37,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="primary_btn">Our Profile</button>
+                <button className="primary_btn">Astral Profile</button>
               </Link>
             </div>
           </div>

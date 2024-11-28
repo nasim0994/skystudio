@@ -1,3 +1,20 @@
+header nav ul li a {
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+header nav ul li a:hover {
+  color: var(--primary);
+}
+
+header nav ul li a.primary_btn:hover {
+  color: #fff;
+}
+
+header nav ul li a.active {
+  color: var(--primary);
+}
+
 .header_menu_btn {
   width: 38px;
   height: 38px;
