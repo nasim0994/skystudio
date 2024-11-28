@@ -1,0 +1,12 @@
+.react-tabs__tab--selected {
+  background: #fffaf4 !important;
+  border: 1px solid #aaaaaa45 !important;
+}
+
+.react-tabs__tab:focus:after {
+  background: #fffaf4 !important;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaaaaa45 !important;
+}

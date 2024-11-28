@@ -1,3 +1,5 @@
+import "../../assets/css/header.css";
+
 import { Link } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import SidebarMenu from "./SidebarMenu";

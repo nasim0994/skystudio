@@ -266,11 +266,6 @@ table tbody td {
 
 /* ---------------------------------- */
 .service_card {
-  background: linear-gradient(to bottom, var(--primary), var(--primary));
-  color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -281,14 +276,22 @@ table tbody td {
 
 .service_card h2 {
   margin-top: 16px;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
+
+  transition: all 0.3s ease;
 }
 
-.service_card p {
-  margin-top: 16px;
-  font-size: 15px;
-  font-weight: 400;
+.service_card img {
+  transition: all 0.5s ease;
+}
+
+.service_card:hover img {
+  transform: scale(1.1);
+}
+
+.service_card:hover h2 {
+  color: var(--primary);
 }
 
 /* ----------------FAQ--------------------- */

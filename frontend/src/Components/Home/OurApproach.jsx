@@ -1,45 +1,75 @@
+import "../../assets/css/approach.css";
+import { useState } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+
+const tabsData = [
+  {
+    title: "Our Approach",
+    image: "/images/approce/1.png",
+  },
+  {
+    title: "Our Vision",
+    image: "/images/approce/2.webp",
+  },
+  {
+    title: "Our Mission",
+    image: "/images/approce/3.svg",
+  },
+  {
+    title: "Our Values",
+    image: "/images/approce/4.webp",
+  },
+  {
+    title: "Our Goals",
+    image: "/images/approce/5.webp",
+  },
+];
+
 export default function OurApproach() {
+  const [progress, setProgress] = useState(0);
+
+  useState(() => {
+    setProgress((1 / tabsData.length) * 100);
+  }, []);
+
+  const handleTabChange = (index) => {
+    setProgress(((index + 1) / tabsData?.length) * 100);
+  };
+
   return (
     <section className="py-10 pb-20">
       <div className="container">
-        <h2 className="text-center text-5xl font-medium">Our Approach</h2>
+        <Tabs onSelect={handleTabChange}>
+          <TabList>
+            {tabsData.map((tab, index) => (
+              <Tab key={index}>{tab.title}</Tab>
+            ))}
+          </TabList>
 
-        <div className="mt-20 flex flex-col items-center justify-center gap-10 sm:flex-row">
-          <div className="process_card">
-            <div className="process_icon">
-              <img src="/images/ap1.png" alt="" />
-            </div>
-            <p className="font-medium text-neutral">Meet and Greet</p>
-          </div>
+          {tabsData?.map((tab, i) => (
+            <TabPanel key={i}>
+              <img
+                src={tab?.image}
+                className="mx-auto mt-10 sm:w-[600px]"
+                alt=""
+              />
 
-          <div className="process_card">
-            <div className="process_icon">
-              <img src="/images/ap2.png" alt="" />
-            </div>
-            <p className="font-medium text-neutral">Design Development</p>
-          </div>
-
-          <div className="process_card">
-            <div className="process_icon">
-              <img src="/images/ap3.png" alt="" />
-            </div>
-            <p className="font-medium text-neutral">Place Your Order</p>
-          </div>
-
-          <div className="process_card">
-            <div className="process_icon">
-              <img src="/images/ap4.png" alt="" />
-            </div>
-            <p className="font-medium text-neutral">Installation Process</p>
-          </div>
-
-          <div className="process_card">
-            <div className="process_icon">
-              <img src="/images/ap5.png" alt="" />
-            </div>
-            <p className="font-medium text-neutral">You Moving In</p>
-          </div>
-        </div>
+              {/* Progress bar */}
+              <div className="relative mt-6">
+                <div className="progress-bar">
+                  <div
+                    className="progress"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+                <div className="progress-percent absolute right-0 top-0 text-xl font-bold text-blue-500">
+                  {Math.round(progress)}%
+                </div>
+              </div>
+            </TabPanel>
+          ))}
+        </Tabs>
       </div>
     </section>
   );
