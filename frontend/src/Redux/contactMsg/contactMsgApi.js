@@ -3,9 +3,10 @@ import { apiSlice } from "../api/apiSlice";
 export const contactMsgApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllContactMsgs: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/contactMsg",
         method: "GET",
+        params: query,
       }),
       providesTags: ["contactMsgs"],
     }),

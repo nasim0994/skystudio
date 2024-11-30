@@ -120,9 +120,13 @@ export default function ContactUs() {
             ></textarea>
           </div>
 
-          <div>
+          <div className="sm:col-span-3">
             <p className="mb-1">Map URL</p>
-            <textarea name="map" defaultValue={contactUs?.map}></textarea>
+            <textarea
+              name="map"
+              rows={5}
+              defaultValue={contactUs?.map}
+            ></textarea>
           </div>
         </div>
 

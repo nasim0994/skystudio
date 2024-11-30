@@ -7,9 +7,15 @@ import {
 import { IoEye } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Spinner from "../../../Components/Spinner/Spinner";
+import Pagination from "../../../Components/Pagination/Pagination";
+import { useState } from "react";
 
 export default function ContactMsgList() {
-  const { data, isLoading, isError, isSuccess } = useGetAllContactMsgsQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, isLoading, isError, isSuccess } = useGetAllContactMsgsQuery({
+    limit: 15,
+    page: currentPage,
+  });
   const contactMessages = data?.data;
 
   const [deleteContactMsg] = useDeleteContactMsgMutation();
@@ -49,7 +55,7 @@ export default function ContactMsgList() {
   if (!isError && isSuccess) {
     content = (
       <tbody>
-        {contactMessages?.map((msg, i) => (
+        {contactMessages?.map((msg) => (
           <tr key={msg?._id}>
             <td>{new Date(msg?.createdAt).toLocaleDateString()}</td>
             <td>{msg?.name}</td>
@@ -89,6 +95,14 @@ export default function ContactMsgList() {
           {content}
         </table>
       </div>
+
+      {data?.meta?.pages > 1 && (
+        <Pagination
+          pages={data?.meta?.pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </section>
   );
 }

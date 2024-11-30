@@ -1,3 +1,4 @@
+import { MdDesignServices } from "react-icons/md";
 import { FaUserShield } from "react-icons/fa";
 import { useGetAdminsQuery } from "../../../Redux/user/userApi";
 import Spinner from "../../../Components/Spinner/Spinner";
@@ -8,6 +9,7 @@ import { useGetProjectsQuery } from "../../../Redux/projects/projectsApi";
 import { useGetFeatureProjectsQuery } from "../../../Redux/featureProject/featureProjectApi";
 import { useGetAllContactMsgsQuery } from "../../../Redux/contactMsg/contactMsgApi";
 import ContactMsgList from "../ContactMsg/ContactMsgList";
+import { useGetAllServiceQuery } from "../../../Redux/service/serviceApi";
 
 export default function Dashboard() {
   const { data: users, isLoading: userLoading } = useGetAdminsQuery();
@@ -18,12 +20,11 @@ export default function Dashboard() {
   const { data: featureProject } = useGetFeatureProjectsQuery();
   const feature = featureProject?.data;
 
-  const { data: clientMsg } = useGetAllContactMsgsQuery();
-  const clientMessages = clientMsg?.data;
+  const { data: clientMsg } = useGetAllContactMsgsQuery({ limit: 1 });
 
-  if (userLoading) {
-    return <Spinner />;
-  }
+  const { data: service } = useGetAllServiceQuery();
+
+  if (userLoading) return <Spinner />;
 
   return (
     <section className="py-5">
@@ -42,7 +43,7 @@ export default function Dashboard() {
             <div>
               <p className="font-dinMedium text-neutral">Client Message</p>
               <h3 className="font-bold text-primary">
-                {clientMessages?.length}
+                {clientMsg?.meta?.total}
               </h3>
             </div>
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-base-100">
@@ -51,7 +52,18 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center justify-between rounded-lg bg-base-100 p-4 shadow">
             <div>
-              <p className="font-dinMedium text-neutral">Total Project</p>
+              <p className="font-dinMedium text-neutral">Total Services</p>
+              <h3 className="font-bold text-primary">
+                {service?.data?.length}
+              </h3>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-base-100">
+              <MdDesignServices className="text-xl" />
+            </div>
+          </div>
+          <div className="flex items-center justify-between rounded-lg bg-base-100 p-4 shadow">
+            <div>
+              <p className="font-dinMedium text-neutral">Total Projects</p>
               <h3 className="font-bold text-primary">{projects?.length}</h3>
             </div>
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-base-100">
