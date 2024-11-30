@@ -25,6 +25,8 @@ const user = require("./userRoutes");
 const client = require("./clientRoutes");
 const counter = require("./counterRoute");
 const faq = require("./faqRoute");
+const approach = require("./approachRoute");
+const review = require("./reviewRoute");
 
 //------------------------------------------------------------------------------
 // use Routes
@@ -50,5 +52,7 @@ router.use("/user", user);
 router.use("/client", client);
 router.use("/counter", counter);
 router.use("/faq", faq);
+router.use("/approach", approach);
+router.use("/review", review);
 
 module.exports = router;

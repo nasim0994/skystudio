@@ -4,6 +4,12 @@ import Spinner from "../Components/Spinner/Spinner";
 import AllCategories from "../Pages/Admin/Service/Categories/AllCategories";
 import AddCategory from "../Pages/Admin/Service/Categories/AddCategory";
 import EditCategory from "../Pages/Admin/Service/Categories/EditCategory";
+import AllApproach from "../Pages/Admin/Approach/AllApproach";
+import AddApproach from "../Pages/Admin/Approach/AddApproach";
+import EditApproach from "../Pages/Admin/Approach/EditApproach";
+import AllClientReview from "../Pages/Admin/ClientReview/AllClientReview";
+import AddClientReview from "../Pages/Admin/ClientReview/AddClientReview";
+import EditClientReview from "../Pages/Admin/ClientReview/EditClientReview";
 
 // Lazy loading the components
 const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
@@ -178,6 +184,20 @@ export const adminRoutes = {
       element: <HighlightProject />,
     },
 
+    //-------------Our Approach
+    {
+      path: "approach/all",
+      element: <AllApproach />,
+    },
+    {
+      path: "approach/add",
+      element: <AddApproach />,
+    },
+    {
+      path: "approach/edit/:id",
+      element: <EditApproach />,
+    },
+
     //----counter routes
     {
       path: "counter",
@@ -192,6 +212,20 @@ export const adminRoutes = {
     {
       path: "client/add",
       element: <AddClient />,
+    },
+
+    //------review
+    {
+      path: "client-review/all",
+      element: <AllClientReview />,
+    },
+    {
+      path: "client-review/add",
+      element: <AddClientReview />,
+    },
+    {
+      path: "client-review/edit/:id",
+      element: <EditClientReview />,
     },
 
     //--------pages

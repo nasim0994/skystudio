@@ -1,3 +1,5 @@
+import { MdReviews } from "react-icons/md";
+import { BsBarChartSteps } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { FaPager } from "react-icons/fa";
 import { ImSortNumbericDesc } from "react-icons/im";
@@ -75,6 +77,12 @@ const adminSidebarItems = [
   },
 
   {
+    icon: <BsBarChartSteps />,
+    title: "Our Approach",
+    path: "/admin/approach/all",
+  },
+
+  {
     icon: <ImSortNumbericDesc />,
     title: "Counter",
     path: "/admin/counter",
@@ -84,6 +92,12 @@ const adminSidebarItems = [
     icon: <FaUsers />,
     title: "Clients",
     path: "/admin/client/all",
+  },
+
+  {
+    icon: <MdReviews />,
+    title: "Client Review",
+    path: "/admin/client-review/all",
   },
 
   {

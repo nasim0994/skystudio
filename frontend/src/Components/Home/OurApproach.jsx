@@ -2,57 +2,46 @@ import "../../assets/css/approach.css";
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-
-const tabsData = [
-  {
-    title: "Our Approach",
-    image: "/images/approce/1.png",
-  },
-  {
-    title: "Our Vision",
-    image: "/images/approce/2.webp",
-  },
-  {
-    title: "Our Mission",
-    image: "/images/approce/3.svg",
-  },
-  {
-    title: "Our Values",
-    image: "/images/approce/4.webp",
-  },
-  {
-    title: "Our Goals",
-    image: "/images/approce/5.webp",
-  },
-];
+import { useGetAllApproachQuery } from "../../Redux/approach/approachApi";
 
 export default function OurApproach() {
   const [progress, setProgress] = useState(0);
 
-  useState(() => {
-    setProgress((1 / tabsData.length) * 100);
-  }, []);
+  const { data, isLoading } = useGetAllApproachQuery();
+  const allApproach = data?.data;
 
   const handleTabChange = (index) => {
-    setProgress(((index + 1) / tabsData?.length) * 100);
+    setProgress(((index + 1) / allApproach?.length) * 100);
   };
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <section className="py-10 pb-20">
       <div className="container">
+        <div className="mb-8">
+          <h2 className="text-center text-3xl font-semibold text-neutral sm:text-5xl">
+            Our Approach
+          </h2>
+          <p className="mt-2 text-center text-sm text-neutral/70">
+            Our working process is very easy; see it for yourself.
+          </p>
+        </div>
+
         <Tabs onSelect={handleTabChange}>
           <TabList>
-            {tabsData.map((tab, index) => (
+            {allApproach?.map((tab, index) => (
               <Tab key={index}>{tab.title}</Tab>
             ))}
           </TabList>
 
-          {tabsData?.map((tab, i) => (
+          {allApproach?.map((tab, i) => (
             <TabPanel key={i}>
               <img
-                src={tab?.image}
+                src={`${import.meta.env.VITE_BACKEND_URL}/${tab?.image}`}
                 className="fade-up-animation mx-auto mt-10 sm:w-[600px]"
-                alt=""
+                loading="lazy"
+                alt={tab?.title}
               />
 
               {/* Progress bar */}

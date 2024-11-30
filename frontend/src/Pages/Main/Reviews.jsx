@@ -1,7 +1,18 @@
-import { BsPlayCircle } from "react-icons/bs";
+import { useGetAllReviewQuery } from "../../Redux/review/reviewApi";
+import ReviewCard from "../../Components/Main/ReviewCard";
+import Pagination from "../../Components/Pagination/Pagination";
+import { useState } from "react";
 
 export default function Reviews() {
   window.scrollTo(0, 0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data } = useGetAllReviewQuery({
+    limit: 9,
+    page: currentPage,
+  });
+
+  const allReview = data?.data;
 
   return (
     <section className="bg-[#ffffffb8] py-10">
@@ -11,240 +22,19 @@ export default function Reviews() {
         </h2>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <button className="relative w-full">
-              <img
-                src="https://www.interiordesignwala.com/userfiles/media/interiordesignwala.com/maxresdefaul.webp"
-                alt="review"
-                className="h-48 w-full"
-              />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <BsPlayCircle className="text-6xl text-[#FFFAF4]" />
-              </div>
-            </button>
-
-            <div className="p-1 text-center">
-              <p className="text-sm italic text-neutral-content">
-                Astral has the expertise in space utilization and innovative
-                design, making them the ideal choice to interior our dream home.
-              </p>
-
-              <h3 className="mb-1 mt-2 text-base font-medium text-neutral">
-                Samantha Parveg
-              </h3>
-              <h4 className="text-sm text-neutral">2155sft, Basundhara R/A</h4>
-            </div>
-          </div>
+          {allReview?.map((review) => (
+            <ReviewCard key={review?._id} review={review} />
+          ))}
         </div>
+
+        {/* Pagination */}
+        {data?.meta?.pages > 1 && (
+          <Pagination
+            pages={data?.meta?.pages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </div>
     </section>
   );

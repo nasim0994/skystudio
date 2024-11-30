@@ -201,8 +201,8 @@ exports.update = async (req, res) => {
 
 // get galley by service id
 exports.getByServiceId = async (req, res) => {
+  let { id } = req.params;
   try {
-    let { id } = req.params;
     const result = await Gallery.aggregate([
       {
         $match: {
@@ -210,12 +210,31 @@ exports.getByServiceId = async (req, res) => {
         },
       },
       {
-        $unwind: "$images",
+        $lookup: {
+          from: "servicecategories",
+          localField: "category",
+          foreignField: "_id",
+          as: "categoryInfo",
+        },
       },
       {
         $group: {
-          _id: "$service",
+          _id: "$category",
           images: { $push: "$images" },
+          categoryDetails: { $first: "$categoryInfo" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          category: { $arrayElemAt: ["$categoryDetails.name", 0] },
+          images: {
+            $reduce: {
+              input: "$images",
+              initialValue: [],
+              in: { $concatArrays: ["$$value", "$$this"] },
+            },
+          },
         },
       },
     ]);
@@ -230,7 +249,7 @@ exports.getByServiceId = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Gallery Fetch Successfully",
-      data: result[0],
+      data: result,
     });
   } catch (err) {
     res.json({

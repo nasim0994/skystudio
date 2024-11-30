@@ -1,5 +1,6 @@
-import { BsTwitter } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import React from "react";
+import * as FaIcons from "react-icons/fa";
+
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineLocationOn, MdOutlineMail } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -14,10 +15,12 @@ export default function Footer() {
   const { data } = useGetContactsQuery();
   const contact = data?.data;
 
+  const socials = contact?.socials;
+
   const { data: businessData } = useGetBusinessInfoQuery();
   const businessInfo = businessData?.data;
 
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-black/90 pt-16">
@@ -109,30 +112,16 @@ export default function Footer() {
 
             {/*  */}
             <div className="flex items-center justify-center gap-2">
-              <Link
-                to={contact?.facebookLink}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
-              >
-                <FaFacebookF />
-              </Link>
-              <Link
-                to={contact?.linkedinLink}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
-              >
-                <FaLinkedinIn />
-              </Link>
-              <Link
-                to={contact?.twitterLink}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
-              >
-                <BsTwitter />
-              </Link>
-              <Link
-                to={contact?.youtubeLink}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
-              >
-                <FaYoutube />
-              </Link>
+              {socials?.map((social, i) => (
+                <Link
+                  key={i}
+                  to={social?.url}
+                  target="_blank"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral/90 text-lg text-base-100 duration-300 hover:bg-primary"
+                >
+                  {React.createElement(FaIcons[social?.icon])}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

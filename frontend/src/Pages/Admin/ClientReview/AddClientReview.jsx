@@ -1,38 +1,41 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
-import {
-  useGetSingleBannerQuery,
-  useUpdateBannerMutation,
-} from "../../../../Redux/banner/bannerApi";
+import { useAddReviewMutation } from "../../../Redux/review/reviewApi";
 
-export default function EditBanner() {
-  const { id } = useParams();
+export default function AddClientReview() {
   const navigate = useNavigate();
   const [image, setImage] = useState([]);
 
-  const { data } = useGetSingleBannerQuery(id);
-  const banner = data?.data;
+  const [addReview, { isLoading }] = useAddReviewMutation();
 
-  const [updateBanner, { isLoading }] = useUpdateBannerMutation();
-
-  const handleEdit = async (e) => {
+  const handleAddProject = async (e) => {
     e.preventDefault();
-    const title = e.target.title.value;
+    const video = e.target.video.value;
+    const clientName = e.target.clientName.value;
+    const project = e.target.project.value;
+    const review = e.target.review.value;
+
+    if (image?.length <= 0) {
+      return Swal.fire("", "thumbnail is required", "warning");
+    }
 
     const formData = new FormData();
-    formData.append("title", title);
-    if (image?.length > 0) formData.append("image", image[0].file);
+    formData.append("thumbnail", image[0].file);
+    formData.append("video", video);
+    formData.append("clientName", clientName);
+    formData.append("project", project);
+    formData.append("review", review);
 
     try {
-      const res = await updateBanner({ id, formData });
+      const res = await addReview(formData);
       if (res?.data?.success) {
-        Swal.fire("", "Banner edit successfully", "success");
+        Swal.fire("", "Review added successfully", "success");
         e.target.reset();
         setImage([]);
-        navigate("/admin/front-end/banner/all");
+        navigate("/admin/client-review/all");
       } else {
         Swal.fire("", res?.data?.message || "Something went wrong!", "error");
         console.log(res);
@@ -46,23 +49,13 @@ export default function EditBanner() {
   return (
     <section className="rounded bg-base-100 shadow">
       <div className="flex items-center justify-between border-b p-4 font-medium text-neutral">
-        <h3>Edit Banner</h3>
+        <h3>Add Client Review</h3>
       </div>
 
-      <form className="p-4" onSubmit={handleEdit}>
-        <div className="flex flex-col gap-4">
+      <form className="p-4" onSubmit={handleAddProject}>
+        <div className="grid items-start gap-4 text-neutral-content sm:grid-cols-2">
           <div>
-            <p className="mb-1">Title</p>
-            <input
-              type="text"
-              name="title"
-              required
-              defaultValue={banner?.title}
-            />
-          </div>
-
-          <div>
-            <p className="mb-1">Image</p>
+            <p className="mb-1">Thumbnail</p>
             <div>
               <ImageUploading
                 value={image}
@@ -103,22 +96,35 @@ export default function EditBanner() {
                   </div>
                 )}
               </ImageUploading>
-
-              {banner?.bg && (
-                <div className="mt-4">
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/${banner?.bg}`}
-                    alt={banner?.title}
-                    className="w-24"
-                  />
-                </div>
-              )}
             </div>
           </div>
+          <div>
+            <p className="mb-1">Youtube Video Id</p>
+            <input type="text" name="video" />
+          </div>
+
+          <div>
+            <p className="mb-1">Client Name</p>
+            <input type="text" name="clientName" />
+          </div>
+          <div>
+            <p className="mb-1">Project Title</p>
+            <input type="text" name="project" />
+          </div>
+
+          <div className="sm:col-span-2">
+            <p className="mb-1">Review</p>
+            <textarea
+              name="review"
+              rows="5"
+              className="w-full rounded border border-base-200"
+            ></textarea>
+          </div>
         </div>
+
         <div className="mt-6">
           <button className="admin_btn" disabled={isLoading}>
-            {isLoading ? "Editing..." : "Edit Banner"}
+            {isLoading ? "Adding..." : "Add Review"}
           </button>
         </div>
       </form>

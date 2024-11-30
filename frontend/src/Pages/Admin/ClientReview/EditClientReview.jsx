@@ -4,35 +4,41 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import {
-  useGetSingleBannerQuery,
-  useUpdateBannerMutation,
-} from "../../../../Redux/banner/bannerApi";
+  useGetSingleReviewQuery,
+  useUpdateReviewMutation,
+} from "../../../Redux/review/reviewApi";
 
-export default function EditBanner() {
+export default function EditClientReview() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [image, setImage] = useState([]);
 
-  const { data } = useGetSingleBannerQuery(id);
-  const banner = data?.data;
+  const { data } = useGetSingleReviewQuery(id);
+  const review = data?.data;
 
-  const [updateBanner, { isLoading }] = useUpdateBannerMutation();
+  const [updateReview, { isLoading }] = useUpdateReviewMutation();
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    const title = e.target.title.value;
+    const video = e.target.video.value;
+    const clientName = e.target.clientName.value;
+    const project = e.target.project.value;
+    const review = e.target.review.value;
 
     const formData = new FormData();
-    formData.append("title", title);
-    if (image?.length > 0) formData.append("image", image[0].file);
+    if (image?.length > 0) formData.append("thumbnail", image[0].file);
+    formData.append("video", video);
+    formData.append("clientName", clientName);
+    formData.append("project", project);
+    formData.append("review", review);
 
     try {
-      const res = await updateBanner({ id, formData });
+      const res = await updateReview({ id, formData });
       if (res?.data?.success) {
-        Swal.fire("", "Banner edit successfully", "success");
+        Swal.fire("", "Review edit successfully", "success");
         e.target.reset();
         setImage([]);
-        navigate("/admin/front-end/banner/all");
+        navigate("/admin/client-review/all");
       } else {
         Swal.fire("", res?.data?.message || "Something went wrong!", "error");
         console.log(res);
@@ -46,23 +52,13 @@ export default function EditBanner() {
   return (
     <section className="rounded bg-base-100 shadow">
       <div className="flex items-center justify-between border-b p-4 font-medium text-neutral">
-        <h3>Edit Banner</h3>
+        <h3>Edit Client Review</h3>
       </div>
 
       <form className="p-4" onSubmit={handleEdit}>
-        <div className="flex flex-col gap-4">
+        <div className="grid items-start gap-4 text-neutral-content sm:grid-cols-2">
           <div>
-            <p className="mb-1">Title</p>
-            <input
-              type="text"
-              name="title"
-              required
-              defaultValue={banner?.title}
-            />
-          </div>
-
-          <div>
-            <p className="mb-1">Image</p>
+            <p className="mb-1">Thumbnail</p>
             <div>
               <ImageUploading
                 value={image}
@@ -104,21 +100,60 @@ export default function EditBanner() {
                 )}
               </ImageUploading>
 
-              {banner?.bg && (
-                <div className="mt-4">
+              {review?.thumbnail && (
+                <div className="mt-2">
                   <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/${banner?.bg}`}
-                    alt={banner?.title}
-                    className="w-24"
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${review?.thumbnail}`}
+                    alt={review?.image}
+                    className="w-40 rounded"
                   />
                 </div>
               )}
             </div>
           </div>
+          <div>
+            <p className="mb-1">Youtube Video Id</p>
+            <input
+              type="text"
+              name="video"
+              required
+              defaultValue={review?.video}
+            />
+          </div>
+
+          <div>
+            <p className="mb-1">Client Name</p>
+            <input
+              type="text"
+              name="clientName"
+              required
+              defaultValue={review?.clientName}
+            />
+          </div>
+          <div>
+            <p className="mb-1">Project Title</p>
+            <input
+              type="text"
+              name="project"
+              required
+              defaultValue={review?.project}
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <p className="mb-1">Review</p>
+            <textarea
+              name="review"
+              rows="5"
+              className="w-full rounded border border-base-200"
+              required
+              defaultValue={review?.review}
+            ></textarea>
+          </div>
         </div>
         <div className="mt-6">
           <button className="admin_btn" disabled={isLoading}>
-            {isLoading ? "Editing..." : "Edit Banner"}
+            {isLoading ? "Editing..." : "Edit Review"}
           </button>
         </div>
       </form>
