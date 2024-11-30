@@ -1,6 +1,9 @@
 import { lazy, Suspense } from "react";
 import AdminLayout from "../Layout/AdminLayout";
 import Spinner from "../Components/Spinner/Spinner";
+import AllCategories from "../Pages/Admin/Service/Categories/AllCategories";
+import AddCategory from "../Pages/Admin/Service/Categories/AddCategory";
+import EditCategory from "../Pages/Admin/Service/Categories/EditCategory";
 
 // Lazy loading the components
 const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
@@ -17,13 +20,13 @@ const EditService = lazy(
 );
 
 const Gallery = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Gallery/Gallery"),
+  () => import("../Pages/Admin/Service/Gallery/AllGalleries"),
 );
 const AddGallery = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Gallery/AddGallery"),
+  () => import("../Pages/Admin/Service/Gallery/AddGallery"),
 );
 const EditGallery = lazy(
-  () => import("../Pages/Admin/FrontEndSetting/Gallery/EditGallery"),
+  () => import("../Pages/Admin/Service/Gallery/EditGallery"),
 );
 
 const Counter = lazy(() => import("../Pages/Admin/Counter/Counter"));
@@ -130,6 +133,20 @@ export const adminRoutes = {
       element: <EditService />,
     },
 
+    //-----Category
+    {
+      path: "service/category/all",
+      element: <AllCategories />,
+    },
+    {
+      path: "service/category/add",
+      element: <AddCategory />,
+    },
+    {
+      path: "service/category/edit/:id",
+      element: <EditCategory />,
+    },
+    //-----Gallery
     {
       path: "service/gallery/ALL",
       element: <Gallery />,

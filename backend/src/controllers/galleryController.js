@@ -44,7 +44,7 @@ exports.add = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const result = await Gallery.find({}).populate("service");
+    const result = await Gallery.find({}).populate("service category");
 
     if (!result) {
       return res.json({
@@ -69,7 +69,7 @@ exports.getAll = async (req, res) => {
 exports.getSingle = async (req, res) => {
   try {
     let { id } = req.params;
-    const result = await Gallery.findById(id).populate("service");
+    const result = await Gallery.findById(id).populate("service category");
 
     if (!result) {
       return res.json({
@@ -138,11 +138,13 @@ exports.update = async (req, res) => {
     const isExist = await Gallery.findById(id);
 
     if (!isExist) {
-      if (image) {
-        fs.unlink(`./uploads/gallery/${image}`, (err) => {
-          if (err) {
-            console.error(err);
-          }
+      if (images?.length > 0) {
+        images?.map((img) => {
+          fs.unlink(`./uploads/gallery/${img?.filename}`, (err) => {
+            if (err) {
+              console.error(err);
+            }
+          });
         });
       }
 

@@ -5,16 +5,20 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetAllServiceQuery } from "../../../../Redux/service/serviceApi";
 import {
-  useAddGalleryMutation,
   useGetSingleGalleryQuery,
   useUpdateGalleryMutation,
 } from "../../../../Redux/service/galleryApi";
+import { useGetAllCategoriesQuery } from "../../../../Redux/service/categoryApi";
 
 export default function EditGallery() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
+
+  const { data: category } = useGetAllCategoriesQuery();
+  const categories = category?.data;
 
   const { data } = useGetAllServiceQuery();
   const services = data?.data;
@@ -25,6 +29,7 @@ export default function EditGallery() {
   useEffect(() => {
     if (gallery) {
       setSelectedService(gallery?.service?._id);
+      setSelectedCategory(gallery?.category?._id);
     }
   }, [gallery]);
 
@@ -34,11 +39,13 @@ export default function EditGallery() {
     e.preventDefault();
 
     const serviceId = e.target.service.value;
+    const category = e.target.category.value;
 
     const formData = new FormData();
     if (images?.length > 0)
       images?.map((img) => formData.append("image", img.file));
     formData.append("service", serviceId);
+    formData.append("category", category);
 
     try {
       const res = await updateGallery({ id, formData });
@@ -65,19 +72,36 @@ export default function EditGallery() {
 
       <form onSubmit={handleEdit} className="p-4">
         <div className="flex flex-col gap-3">
-          <div className="sm:w-96">
-            <p className="mb-1">Service</p>
-            <select
-              name="service"
-              value={selectedService}
-              onChange={(e) => setSelectedService(e.target.value)}
-            >
-              {services?.map((service) => (
-                <option key={service?._id} value={service?._id}>
-                  {service?.title}
-                </option>
-              ))}
-            </select>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <p className="mb-1">Category</p>
+              <select
+                name="category"
+                value={selectedCategory}
+                onChange={(e) => selectedCategory(e.target.value)}
+              >
+                {categories?.map((category) => (
+                  <option key={category?._id} value={category?._id}>
+                    {category?.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <p className="mb-1">Service</p>
+              <select
+                name="service"
+                value={selectedService}
+                onChange={(e) => setSelectedService(e.target.value)}
+              >
+                {services?.map((service) => (
+                  <option key={service?._id} value={service?._id}>
+                    {service?.title}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div>

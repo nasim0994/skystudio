@@ -5,6 +5,11 @@ const GallerySchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ServiceCategory",
+    required: true,
+  },
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Service",

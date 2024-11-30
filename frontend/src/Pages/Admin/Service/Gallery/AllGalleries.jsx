@@ -9,7 +9,7 @@ import {
 } from "../../../../Redux/gallery/galleryApi";
 import Spinner from "../../../../Components/Spinner/Spinner";
 
-export default function Gallery() {
+export default function AllGalleries() {
   const { data, isLoading, isError, isSuccess } = useGetGalleryQuery();
   const gallery = data?.data;
 
@@ -24,6 +24,7 @@ export default function Gallery() {
         }
       } catch (error) {
         Swal.fire("", "Something went wrong", "error");
+        console.log(error);
       }
     }
   };
@@ -55,6 +56,7 @@ export default function Gallery() {
                 ))}
               </div>
             </td>
+            <td>{gallery?.category?.name}</td>
             <td>{gallery?.service?.title}</td>
             <td>
               <div className="flex items-center gap-3">
@@ -93,6 +95,7 @@ export default function Gallery() {
             <tr>
               <th>SL</th>
               <th>Image</th>
+              <th>Category</th>
               <th>Service</th>
               <th>Action</th>
             </tr>

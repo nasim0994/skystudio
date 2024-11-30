@@ -12,6 +12,8 @@ export default function ServiceDetails() {
   const { data: gallery } = useGetGalleryByServiceIdQuery(id);
   const allImages = gallery?.data?.images;
 
+  console.log(gallery);
+
   return (
     <section className="min-h-[60vh] py-5">
       <div className="container">
@@ -19,7 +21,7 @@ export default function ServiceDetails() {
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/${service?.image}`}
             alt="feature"
-            className="w-32"
+            className="max-h-60 w-full rounded object-cover sm:w-[500px]"
             loading="lazy"
           />
           <h2 className="mt-3 text-4xl font-medium">{service?.title}</h2>

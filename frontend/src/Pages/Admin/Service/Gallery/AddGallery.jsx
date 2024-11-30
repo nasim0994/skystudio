@@ -5,10 +5,14 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useGetAllServiceQuery } from "../../../../Redux/service/serviceApi";
 import { useAddGalleryMutation } from "../../../../Redux/service/galleryApi";
+import { useGetAllCategoriesQuery } from "../../../../Redux/service/categoryApi";
 
 export default function AddGallery() {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+
+  const { data: category } = useGetAllCategoriesQuery();
+  const categories = category?.data;
 
   const { data } = useGetAllServiceQuery();
   const services = data?.data;
@@ -19,10 +23,12 @@ export default function AddGallery() {
     e.preventDefault();
 
     const serviceId = e.target.service.value;
+    const category = e.target.category.value;
 
     const formData = new FormData();
     images?.map((img) => formData.append("image", img.file));
     formData.append("service", serviceId);
+    formData.append("category", category);
 
     try {
       const res = await addGallery(formData);
@@ -49,15 +55,28 @@ export default function AddGallery() {
 
       <form onSubmit={handleAdd} className="p-4">
         <div className="flex flex-col gap-3">
-          <div className="sm:w-96">
-            <p className="mb-1">Service</p>
-            <select name="service">
-              {services?.map((service) => (
-                <option key={service?._id} value={service?._id}>
-                  {service?.title}
-                </option>
-              ))}
-            </select>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <p className="mb-1">Category</p>
+              <select name="category">
+                {categories?.map((category) => (
+                  <option key={category?._id} value={category?._id}>
+                    {category?.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <p className="mb-1">Service</p>
+              <select name="service">
+                {services?.map((service) => (
+                  <option key={service?._id} value={service?._id}>
+                    {service?.title}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div>

@@ -24,7 +24,7 @@ const ContactSchema = new mongoose.Schema(
     map: {
       type: String,
     },
-    social: {
+    socials: {
       type: Array,
     },
   },

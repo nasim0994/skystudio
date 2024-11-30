@@ -35,6 +35,10 @@ const adminSidebarItems = [
         path: "/admin/service/all",
       },
       {
+        title: "Categories",
+        path: "/admin/service/category/all",
+      },
+      {
         title: "Gallery",
         path: "/admin/service/gallery/all",
       },

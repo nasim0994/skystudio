@@ -4,11 +4,23 @@ import {
   useAddContactMutation,
   useUpdateContactMutation,
 } from "../../../Redux/contact/contactApi.js";
+import { useEffect, useState } from "react";
+import MultiSocial from "./MultiSocial.jsx";
 
 export default function ContactUs() {
+  const [social, setSocial] = useState([]);
+
   const { data, isLoading } = useGetContactsQuery();
   const contactUs = data?.data;
   const id = contactUs?._id;
+
+  console.log(contactUs);
+
+  useEffect(() => {
+    if (contactUs?.socials) {
+      setSocial(contactUs?.socials);
+    }
+  }, [contactUs]);
 
   const [addContact, { isLoading: addIsLoading }] = useAddContactMutation();
   const [updateContact, { isLoading: updateIsLoading }] =
@@ -17,29 +29,26 @@ export default function ContactUs() {
   const handleAddUpdate = async (e) => {
     e.preventDefault();
 
-    const formData = {
+    const info = {
       title: e.target.title.value,
       description: e.target.description.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
       address: e.target.address.value,
       map: e.target.map.value,
-      facebookLink: e.target.facebookLink.value,
-      twitterLink: e.target.twitterLink.value,
-      linkedinLink: e.target.linkedinLink.value,
-      youtubeLink: e.target.youtubeLink.value,
+      socials: social,
     };
 
     try {
       if (id) {
-        const res = await updateContact({ id, info: formData });
+        const res = await updateContact({ id, info });
         if (res?.data?.success) {
           swal.fire("", `Contact update successfully`, "success");
         } else {
           swal.fire("", "Something went wrong!", "error");
         }
       } else {
-        const res = await addContact(formData);
+        const res = await addContact(info);
         if (res?.data?.success) {
           swal.fire("", `Contact add successfully`, "success");
           console.log(res);
@@ -65,7 +74,12 @@ export default function ContactUs() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <p className="mb-1">Title</p>
-            <input type="text" name="title" defaultValue={contactUs?.title} required />
+            <input
+              type="text"
+              name="title"
+              defaultValue={contactUs?.title}
+              required
+            />
           </div>
           <div>
             <p className="mb-1">Description</p>
@@ -89,7 +103,12 @@ export default function ContactUs() {
           </div>
           <div>
             <p className="mb-1">Phone</p>
-            <input type="tel" name="phone" defaultValue={contactUs?.phone} required />
+            <input
+              type="tel"
+              name="phone"
+              defaultValue={contactUs?.phone}
+              required
+            />
           </div>
 
           <div>
@@ -105,41 +124,10 @@ export default function ContactUs() {
             <p className="mb-1">Map URL</p>
             <textarea name="map" defaultValue={contactUs?.map}></textarea>
           </div>
+        </div>
 
-          <div>
-            <p className="mb-1">Facebook Link</p>
-            <input
-              type="text"
-              name="facebookLink"
-              defaultValue={contactUs?.facebookLink}
-            />
-          </div>
-          <div>
-            <p className="mb-1">Twitter Link</p>
-            <input
-              type="text"
-              name="twitterLink"
-              defaultValue={contactUs?.twitterLink}
-            />
-          </div>
-
-          <div>
-            <p className="mb-1">LinkedIn Link</p>
-            <input
-              type="text"
-              name="linkedinLink"
-              defaultValue={contactUs?.linkedinLink}
-            />
-          </div>
-
-          <div>
-            <p className="mb-1">Youtube Link</p>
-            <input
-              type="text"
-              name="youtubeLink"
-              defaultValue={contactUs?.youtubeLink}
-            />
-          </div>
+        <div className="mt-4 grid">
+          <MultiSocial social={social} setSocial={setSocial} />
         </div>
 
         <div className="mt-4">

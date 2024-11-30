@@ -6,13 +6,11 @@ export default function MultiSocial({ counts, setCounts }) {
   };
 
   const handleInputChange = (index, event) => {
-    const values = [...counts];
-    if (event.target.name === "title") {
-      values[index].title = event.target.value;
-    } else {
-      values[index].number = event.target.value;
-    }
-    setCounts(values);
+    const { name, value } = event.target;
+    const updatedCounts = counts.map((item, idx) =>
+      idx === index ? { ...item, [name]: value } : item,
+    );
+    setCounts(updatedCounts);
   };
 
   const handleRemoveFields = (index) => {
@@ -27,20 +25,20 @@ export default function MultiSocial({ counts, setCounts }) {
 
   return (
     <div className="mt-3 flex flex-col gap-3 rounded border p-3">
-      {counts?.map((input, index) => (
+      {counts?.map((count, index) => (
         <div key={index} className="flex gap-2 text-sm">
           <input
             type="text"
             name="title"
             placeholder="title"
-            value={input.title}
+            value={count?.title}
             onChange={(event) => handleInputChange(index, event)}
           />
           <input
             type="number"
             name="number"
             placeholder="100"
-            value={input.number}
+            value={count?.number}
             onChange={(event) => handleInputChange(index, event)}
           />
           <button
