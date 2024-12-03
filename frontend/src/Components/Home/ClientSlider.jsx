@@ -7,7 +7,7 @@ export default function ClientSlider() {
   return (
     <section className="bg-stone-100 py-10">
       <h2 className="mb-4 text-center text-4xl font-medium text-neutral sm:text-5xl">
-        Featured Clients
+        Client Projects
       </h2>
       <div className="container">
         <div className="wrapper">
