@@ -1,6 +1,6 @@
 # React + Vite
 
-This template provides a Astral setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a skystudio setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 

@@ -1,15 +1,26 @@
 import { lazy, Suspense } from "react";
 import AdminLayout from "../Layout/AdminLayout";
 import Spinner from "../Components/Spinner/Spinner";
-import AllCategories from "../Pages/Admin/Service/Categories/AllCategories";
-import AddCategory from "../Pages/Admin/Service/Categories/AddCategory";
-import EditCategory from "../Pages/Admin/Service/Categories/EditCategory";
-import AllApproach from "../Pages/Admin/Approach/AllApproach";
-import AddApproach from "../Pages/Admin/Approach/AddApproach";
-import EditApproach from "../Pages/Admin/Approach/EditApproach";
-import AllClientReview from "../Pages/Admin/ClientReview/AllClientReview";
-import AddClientReview from "../Pages/Admin/ClientReview/AddClientReview";
-import EditClientReview from "../Pages/Admin/ClientReview/EditClientReview";
+
+const AllCategories = lazy(
+  () => import("../Pages/Admin/Service/Categories/AllCategories"),
+);
+const AddCategory = lazy(
+  () => import("../Pages/Admin/Service/Categories/AddCategory"),
+);
+const EditCategory = lazy(
+  () => import("../Pages/Admin/Service/Categories/EditCategory"),
+);
+
+const AllClientReview = lazy(
+  () => import("../Pages/Admin/ClientReview/AllClientReview"),
+);
+const AddClientReview = lazy(
+  () => import("../Pages/Admin/ClientReview/AddClientReview"),
+);
+const EditClientReview = lazy(
+  () => import("../Pages/Admin/ClientReview/EditClientReview"),
+);
 
 // Lazy loading the components
 const AdminRoute = lazy(() => import("../AdminRoute/AdminRoute"));
@@ -182,20 +193,6 @@ export const adminRoutes = {
     {
       path: "highlight-project",
       element: <HighlightProject />,
-    },
-
-    //-------------Our Approach
-    {
-      path: "approach/all",
-      element: <AllApproach />,
-    },
-    {
-      path: "approach/add",
-      element: <AddApproach />,
-    },
-    {
-      path: "approach/edit/:id",
-      element: <EditApproach />,
     },
 
     //----counter routes

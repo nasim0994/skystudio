@@ -9,7 +9,7 @@ export default function Services() {
     <section className="pb-20 pt-10">
       <div className="container">
         <h2 className="mx-auto text-center text-3xl font-semibold sm:w-2/3 sm:text-5xl">
-          Services of Astral Home
+          Services of skystudio Home
         </h2>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
