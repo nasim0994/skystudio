@@ -10,8 +10,7 @@ const banner = require("./bannerRoutes");
 const about = require("./aboutRoutes");
 const contact = require("./contactRoutes");
 const highlightProject = require("./highlightProjectRoute");
-const whyChooseSection = require("./whychooseSectonRoute");
-const whychoose = require("./whychooseRoute");
+
 const featureProject = require("./featureProjectRoutes");
 const businessInfo = require("./businessInfoRoutes");
 const seo = require("./seoRoutes");
@@ -25,7 +24,7 @@ const user = require("./userRoutes");
 const client = require("./clientRoutes");
 const counter = require("./counterRoute");
 const faq = require("./faqRoute");
-const approach = require("./approachRoute");
+
 const review = require("./reviewRoute");
 
 //------------------------------------------------------------------------------
@@ -37,8 +36,7 @@ router.use("/banner", banner);
 router.use("/about", about);
 router.use("/contact", contact);
 router.use("/highlightProject", highlightProject);
-router.use("/whychooseSection", whyChooseSection);
-router.use("/whychoose", whychoose);
+
 router.use("/featureProject", featureProject);
 router.use("/businessInfo", businessInfo);
 router.use("/seo", seo);
@@ -52,7 +50,7 @@ router.use("/user", user);
 router.use("/client", client);
 router.use("/counter", counter);
 router.use("/faq", faq);
-router.use("/approach", approach);
+
 router.use("/review", review);
 
 module.exports = router;
