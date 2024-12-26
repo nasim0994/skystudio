@@ -8,8 +8,8 @@ module.exports = {
       "light",
       {
         light: {
-          primary: "#178D85",
-          secondary: "#11716A",
+          primary: "#1A2751",
+          secondary: "#018FD7",
           neutral: "#444",
           "neutral-content": "#757872",
           "base-100": "#fff",
