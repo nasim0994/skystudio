@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import { MdReviews } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { FaPager } from "react-icons/fa";
 import { ImSortNumbericDesc } from "react-icons/im";
 import { AiOutlineProject } from "react-icons/ai";
 import { MdDesignServices } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { BsMicrosoftTeams } from "react-icons/bs";
 import {
   MdMonitor,
   MdOutlineDashboard,
@@ -56,6 +57,20 @@ const adminSidebarItems = [
       {
         title: "Highlight Project",
         path: "/admin/highlight-project",
+      },
+    ],
+  },
+  {
+    icon: <BsMicrosoftTeams />,
+    title: "Team",
+    subMenu: [
+      {
+        title: "Team Categories",
+        path: "/admin/team/category/all",
+      },
+      {
+        title: "Teams",
+        path: "/admin/team/all",
       },
     ],
   },

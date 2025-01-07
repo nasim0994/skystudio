@@ -121,6 +121,19 @@ const AddClient = lazy(() => import("../Pages/Admin/Clients/AddClient"));
 
 const SEO = lazy(() => import("../Pages/Admin/SEO/SEO"));
 
+const AllTeam = lazy(() => import("../Pages/Admin/Team/AllTeam"));
+const AddTeam = lazy(() => import("../Pages/Admin/Team/AddTeam"));
+const EditTeam = lazy(() => import("../Pages/Admin/Team/EditTeam"));
+const AllTeamCategory = lazy(
+  () => import("../Pages/Admin/TeamCategory/AllTeamCategory"),
+);
+const AddTeamCategory = lazy(
+  () => import("../Pages/Admin/TeamCategory/AddTeamCategory"),
+);
+const EditTeamCategory = lazy(
+  () => import("../Pages/Admin/TeamCategory/EditTeamCategory"),
+);
+
 export const adminRoutes = {
   path: "/admin",
   element: (
@@ -310,6 +323,32 @@ export const adminRoutes = {
     {
       path: "whyChoose/cards/add",
       element: <AddWhyChooseCard />,
+    },
+
+    // -----Team
+    {
+      path: "team/category/all",
+      element: <AllTeamCategory />,
+    },
+    {
+      path: "team/category/add",
+      element: <AddTeamCategory />,
+    },
+    {
+      path: "team/category/edit/:id",
+      element: <EditTeamCategory />,
+    },
+    {
+      path: "team/all",
+      element: <AllTeam />,
+    },
+    {
+      path: "team/add",
+      element: <AddTeam />,
+    },
+    {
+      path: "team/edit/:id",
+      element: <EditTeam />,
     },
   ],
 };

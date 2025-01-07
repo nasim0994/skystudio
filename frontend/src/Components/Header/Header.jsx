@@ -53,6 +53,9 @@ export default function Header() {
               <li>
                 <NavLink to="/faq">FAQ</NavLink>
               </li>
+              <li>
+                <NavLink to="/our-team">Team</NavLink>
+              </li>
 
               <li className="hidden sm:block">
                 <Link to="/contact-us" className="primary_btn">

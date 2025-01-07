@@ -13,6 +13,8 @@ const Contactus = lazy(() => import("../Pages/Main/Contactus/Contactus"));
 const ServiceDetails = lazy(() => import("../Pages/Main/ServiceDetails"));
 const PrivacyPolicy = lazy(() => import("../Pages/Main/PrivacyPolicy"));
 
+const Teams = lazy(() => import("../Pages/Main/Team/Teams"));
+
 export const mainRoutes = {
   path: "/",
   element: <MainLayout />,
@@ -74,6 +76,14 @@ export const mainRoutes = {
       element: (
         <Suspense fallback={<Spinner />}>
           <Reviews />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/our-team",
+      element: (
+        <Suspense fallback={<Spinner />}>
+          <Teams />
         </Suspense>
       ),
     },

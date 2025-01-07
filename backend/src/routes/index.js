@@ -26,6 +26,8 @@ const counter = require("./counterRoute");
 const faq = require("./faqRoute");
 
 const review = require("./reviewRoute");
+const team = require("./teamRoutes");
+const teamcategory = require("./teamCategoryRoute");
 
 //------------------------------------------------------------------------------
 // use Routes
@@ -52,5 +54,7 @@ router.use("/counter", counter);
 router.use("/faq", faq);
 
 router.use("/review", review);
+router.use("/team", team);
+router.use("/team-category", teamcategory);
 
 module.exports = router;
