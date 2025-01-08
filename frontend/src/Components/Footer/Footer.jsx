@@ -33,9 +33,7 @@ export default function Footer() {
               className="w-40"
               loading="lazy"
             />
-            <p className="mt-3 text-sm text-gray-300">
-              {businessInfo?.tagline}
-            </p>
+            <p className="mt-3 text-sm text-gray-300">{businessInfo?.bio}</p>
           </div>
 
           <div>
