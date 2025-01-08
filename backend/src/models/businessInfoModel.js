@@ -8,11 +8,12 @@ const businessInfoSchema = new mongoose.Schema(
     },
     startYear: {
       type: Number,
-      required: true,
     },
     type: {
       type: String,
-      required: true,
+    },
+    bio: {
+      type: String,
     },
   },
   { timestamps: false }

@@ -7,7 +7,7 @@ import {
 } from "../../../../Redux/businessInfo/businessInfoApi.js";
 
 export default function BusinessInfo() {
-  const { data,  isLoading: isFetching } = useGetBusinessInfoQuery();
+  const { data, isLoading: isFetching } = useGetBusinessInfoQuery();
   const business = data?.data;
   const id = business?._id;
 
@@ -15,9 +15,11 @@ export default function BusinessInfo() {
   const [startYear, setStartYear] = useState("");
   const [type, setType] = useState("");
 
-  const [addBusinessInfo, { isLoading: addIsLoading }] = useAddBusinessInfoMutation();
+  const [addBusinessInfo, { isLoading: addIsLoading }] =
+    useAddBusinessInfoMutation();
 
-  const [updateBusinessInfo, { isLoading: updateIsLoading }] = useUpdateBusinessInfoMutation();
+  const [updateBusinessInfo, { isLoading: updateIsLoading }] =
+    useUpdateBusinessInfoMutation();
 
   useEffect(() => {
     if (business) {
@@ -30,22 +32,31 @@ export default function BusinessInfo() {
   const handleAddUpdate = async (e) => {
     e.preventDefault();
 
-    const info = { name, startYear, type };
+    const bio = e.target.bio.value;
+
+    const info = { name, startYear, type, bio };
 
     try {
       if (id) {
         const res = await updateBusinessInfo({ id, info });
         if (res?.data?.success) {
           swal.fire("", "Business Info updated successfully", "success");
+        } else {
+          swal.fire("", "Something went wrong", "error");
+          console.log(res);
         }
       } else {
         const res = await addBusinessInfo(info);
         if (res?.data?.success) {
           swal.fire("", "Business Info added successfully", "success");
+        } else {
+          swal.fire("", "Something went wrong", "error");
+          console.log(res);
         }
       }
     } catch (error) {
       swal.fire("", "Something went wrong", "error");
+      console.log(error);
     }
   };
 
@@ -91,6 +102,15 @@ export default function BusinessInfo() {
               onChange={(e) => setType(e.target.value)}
             />
           </div>
+
+          <div className="sm:col-span-2 md:col-span-3">
+            <p className="mb-1">Bio</p>
+            <textarea
+              name="bio"
+              rows={6}
+              defaultValue={business?.bio}
+            ></textarea>
+          </div>
         </div>
 
         <div className="mt-5">
@@ -102,8 +122,8 @@ export default function BusinessInfo() {
               {addIsLoading || updateIsLoading
                 ? "Loading..."
                 : id
-                ? "Update"
-                : "Add"}
+                  ? "Update"
+                  : "Add"}
             </button>
           </div>
         </div>
