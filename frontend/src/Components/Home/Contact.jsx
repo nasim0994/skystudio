@@ -5,7 +5,7 @@ export default function Contact() {
     <section className="bg-gray-50 py-10">
       <div className="container">
         <div className="items-center justify-between sm:flex">
-          <h2 className="text-4xl font-medium text-neutral sm:text-5xl">
+          <h2 className="text-4xl font-medium text-neutral">
             Have Any Question?
           </h2>
           <Link to="/contact-us" className="primary_btn">

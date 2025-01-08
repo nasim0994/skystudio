@@ -28,7 +28,7 @@ export default function HeroSlider() {
   return (
     <section className="overflow-hidden">
       <div className="container relative">
-        <div className="absolute left-0 top-14 z-40 w-80 text-3xl font-medium leading-[40px] tracking-widest text-neutral sm:text-4xl sm:leading-[50px]">
+        <div className="absolute left-0 top-4 z-40 w-80 text-3xl font-medium leading-[40px] tracking-widest text-neutral sm:text-4xl sm:leading-[50px] md:top-14">
           <h1 key={activeIndex} className="fade-up-animation">
             {banners?.length > 0 && banners[activeIndex]?.title}
           </h1>

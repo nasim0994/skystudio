@@ -15,7 +15,7 @@ export default function Gallery() {
 
   return (
     <section className="gallery_wrap py-10 sm:py-14">
-      <h2 className="mb-8 text-center text-4xl font-semibold text-neutral sm:text-5xl">
+      <h2 className="mb-8 text-center text-4xl font-semibold text-neutral">
         Our Project Gallery
       </h2>
 

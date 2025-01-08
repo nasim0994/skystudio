@@ -13,7 +13,7 @@ export default function ClientVideoReview() {
   return (
     <section className="bg-[#ffffffb8] py-10">
       <div className="container">
-        <h2 className="mx-auto text-center text-5xl font-medium sm:w-1/2">
+        <h2 className="mx-auto text-center text-4xl font-medium sm:w-1/2">
           See What Our Clients Have to Say About Our Work
         </h2>
 

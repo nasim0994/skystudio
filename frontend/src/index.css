@@ -272,8 +272,8 @@ table tbody td {
 
 .service_card h2 {
   margin-top: 16px;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
 
   transition: all 0.3s ease;
 }

@@ -8,7 +8,7 @@ export default function Services() {
   return (
     <section className="pb-20 pt-10">
       <div className="container">
-        <h2 className="mx-auto text-center text-3xl font-semibold sm:w-2/3 sm:text-5xl">
+        <h2 className="mx-auto text-center text-3xl font-semibold sm:w-2/3 sm:text-4xl">
           Services of Sky Studio
         </h2>
 
