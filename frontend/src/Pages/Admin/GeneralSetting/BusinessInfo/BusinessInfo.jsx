@@ -87,7 +87,6 @@ export default function BusinessInfo() {
             <input
               type="number"
               name="businessStartYear"
-              required
               value={startYear}
               onChange={(e) => setStartYear(e.target.value)}
             />
@@ -97,7 +96,6 @@ export default function BusinessInfo() {
             <input
               type="text"
               name="businessType"
-              required
               value={type}
               onChange={(e) => setType(e.target.value)}
             />
