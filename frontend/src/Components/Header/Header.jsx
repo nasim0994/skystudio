@@ -34,7 +34,7 @@ export default function Header() {
             <img
               src={`${import.meta.env.VITE_BACKEND_URL}/${logo?.logo}`}
               alt="logo"
-              className="h-16 w-[150px]"
+              className="w-[180px]"
               loading="lazy"
             />
           </Link>
