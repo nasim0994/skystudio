@@ -4,7 +4,7 @@ import { useGetTeamsCategoryWaysQuery } from "../../../Redux/teamApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import { Mousewheel, EffectCoverflow, Autoplay } from "swiper/modules";
+import { EffectCoverflow, Autoplay } from "swiper/modules";
 
 export default function Teams() {
   window.scrollTo(0, 0);
@@ -33,7 +33,6 @@ export default function Teams() {
                     centeredSlides={true}
                     grabCursor={true}
                     slidesPerView={"auto"}
-                    mousewheel={true}
                     coverflowEffect={{
                       rotate: 15,
                       stretch: 0,
@@ -41,7 +40,7 @@ export default function Teams() {
                       modifier: 1,
                       slideShadows: false,
                     }}
-                    modules={[Mousewheel, EffectCoverflow, Autoplay]}
+                    modules={[EffectCoverflow, Autoplay]}
                     autoplay={{ delay: 4000, disableOnInteraction: false }}
                     className="w-full"
                   >
@@ -55,7 +54,7 @@ export default function Teams() {
                           className="mx-auto h-60 w-full rounded border"
                         />
 
-                        <div className="mt-2 hidden text-center">
+                        <div className="mt-2 text-center">
                           <h4 className="text-base">{team?.name}</h4>
                           <p className="text-[13px] text-neutral">
                             {team?.designation}
